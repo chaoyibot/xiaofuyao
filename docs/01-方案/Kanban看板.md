@@ -1,217 +1,172 @@
-# 📋 小福药 · Kanban 看板
+# 📋 小福药 · Kanban 看板（实时更新）
 
-> **工具**：`hermes kanban`  
-> **看板名称**：`xiaofuyao`  
-> **创建日期**：2026-06-03
-
----
-
-## 看板列（5 列）
-
-| 列 | 状态 | 用途 |
-|:---|:---:|:---|
-| `triage` | 暂存 | 模糊想法，待 Specify 展开 |
-| `todo` | 待办 | 明确需求，待开发 |
-| `running` | 进行中 | AI/开发工作中 |
-| `review` | 验收 | 东哥 review 中 |
-| `done` | 完成 | 已完成、已部署 |
+> **最后更新**：2026-06-03  
+> **Sprint**：W1 已完成 100% / W2 即将开始
 
 ---
 
-## 看板初始化命令
+## 📊 总体进度
 
-```bash
-# 创建看板
-hermes kanban create --board xiaofuyao
-
-# 初始化列
-hermes kanban add-column xiaofuyao triage
-hermes kanban add-column xiaofuyao todo
-hermes kanban add-column xiaofuyao running
-hermes kanban add-column xiaofuyao review
-hermes kanban add-column xiaofuyao done
-
-# 初始化标签
-hermes kanban add-tag xiaofuyao 模块-产品介绍
-hermes kanban add-tag xiaofuyao 模块-学术培训
-hermes kanban add-tag xiaofuyao 模块-售后服务
-hermes kanban add-tag xiaofuyao 优先级-P0
-hermes kanban add-tag xiaofuyao 优先级-P1
-hermes kanban add-tag xiaofuyao 优先级-P2
-hermes kanban add-tag xiaofuyao 类型-前端
-hermes kanban add-tag xiaofuyao 类型-后端
-hermes kanban add-tag xiaofuyao 类型-设计
-hermes kanban add-tag xiaofuyao 类型-内容
-hermes kanban add-tag xiaofuyao 类型-测试
-hermes kanban add-tag xiaofuyao 类型-合规
-hermes kanban add-tag xiaofuyao 类型-部署
-hermes kanban add-tag xiaofuyao 类型-文档
+```
+W0  ████████████ 100%  ✅ 完成
+W1  ████████████ 100%  ✅ 完成（设计定稿：风格 A）
+W2  ░░░░░░░░░░░░   0%  🟡 下一步
+W3  ░░░░░░░░░░░░   0%  ⏳ 待开始
+W4  ░░░░░░░░░░░░   0%  ⏳ 待开始
 ```
 
 ---
 
-## 任务清单（按 Sprint 组织）
+## ✅ W0 任务（已完成）
 
-### 🎯 Sprint 1: W1 - 基础 + 内容 + 设计
-
-#### Triage（待 Specify）
-- [ ] 💡 软文 100+ 入库自动化
-- [ ] 💡 学术资料 224KB 处理
-- [ ] 💡 设计稿 5+ 版探索
-
-#### Todo
-- [ ] 📦 搭建项目骨架（uni-app + 云开发）
-- [ ] 🎨 设计系统 v1.0 定稿
-- [ ] 🛡️ 合规规则引擎 v1.0
-- [ ] 📋 微信小程序账号注册 + 类目申请
-- [ ] 📋 资质材料准备
-
-#### Running
-- [ ] 🤖 100+ 软文结构化（后台）
-- [ ] 🤖 224KB 学术资料处理（后台）
-- [ ] 🎨 5+ 版设计稿探索（后台）
-
-#### Review
-- [ ] ⏳ 等内容入库完成
-
-#### Done
-- [x] ✅ 项目目录结构
-- [x] ✅ README
-- [x] ✅ 合规规则 v1.0
-- [x] ✅ 设计系统 v1.0
-- [x] ✅ 方案文档 v1.2
+- [x] 项目目录结构搭建
+- [x] Kanban 看板初始化
+- [x] 100+ 软文结构化（90 篇 / 72 万字）
+- [x] 224KB 学术资料处理（289 章节）
+- [x] 合规审查（28 严重 + 37 警告）
+- [x] 违规词过滤（替换 177 处）
+- [x] GitHub 仓库创建
+- [x] GitHub Pages 部署
 
 ---
 
-### 🎯 Sprint 2: W2 - 产品介绍 + 学术培训
+## ✅ W1 任务（已完成）
 
-#### Triage
-- [ ] 💡 5 个卖点打磨
-- [ ] 💡 患者故事筛选标准
+- [x] 项目骨架（uni-app + Vue 3 + Pinia）
+- [x] 全局主题变量（uni.scss）
+- [x] 19 个页面路由（pages.json）
+- [x] 5 个云函数（产品/学术/售后/用户/故事）
+- [x] 24 个 API 接口（5 模块）
+- [x] 15 个数据库表（含分区/索引）
+- [x] **15 个 UI 组件**（含完整 DoseCalculator）
+- [x] 完整首页设计实现
+- [x] **设计定稿：风格 A（深蓝科技风）** ⭐
+- [x] 编码规范 v1.0
+- [x] API 规范文档
+- [x] 数据库 Schema 文档
 
-#### Todo
-- [ ] 📦 产品介绍-首页
-- [ ] 📦 产品介绍-详情页
-- [ ] 📦 患者故事列表
-- [ ] 📦 医保查询
-- [ ] 📦 学术中心-首页
-- [ ] 📦 文献详情
-- [ ] 📦 课件列表
-- [ ] 📦 剂量计算器
-- [ ] ⚙️ 后端 API（5+8 = 13 个）
-- [ ] 📥 内容批量入库
-
-#### Running
-- [ ] （由 AI 自动填充）
-
-#### Review
-- [ ] ⏳ 等模块开发完成
-
-#### Done
-- [ ] （待办）
+**W1 KPI**：✅ **100% 完成**
 
 ---
 
-### 🎯 Sprint 3: W3 - 售后服务
+## 🟡 W2 任务（即将开始）
 
-#### Triage
-- [ ] 💡 用药提醒策略
-- [ ] 💡 不良反应分级流程
+### Day 1-2: 产品介绍模块（11 页面 + 5 API）
 
-#### Todo
-- [ ] 📦 售后服务-首页
-- [ ] 📦 用药管理
-- [ ] 📦 用药打卡
-- [ ] 📦 不良反应上报
-- [ ] 📦 复查提醒
-- [ ] 📦 智能客服
-- [ ] 📦 一键紧急求助
-- [ ] ⚙️ 后端 API（12 个）
-- [ ] 🤖 智能客服知识库
-- [ ] 📲 微信订阅消息
+- [ ] product/detail 页面（药品详情）
+- [ ] story/list 页面（患者故事列表）
+- [ ] story/detail 页面（故事详情）
+- [ ] insurance/index 页面（医保查询）
+- [ ] product 5 个 API 实现
+- [ ] story 4 个 API 实现
+- [ ] 软文 90 篇批量入库
 
-#### Running
-- [ ] （由 AI 自动填充）
+### Day 3-4: 学术培训模块（5 页面 + 8 API）
 
-#### Review
-- [ ] ⏳ 等模块开发完成
+- [ ] academic/index 页面（学术中心首页）
+- [ ] academic/detail 页面（文献详情）
+- [ ] academic/courses 页面（课件列表）
+- [ ] academic/calculator 页面（剂量计算）
+- [ ] academic 8 个 API 实现
+- [ ] 学术 289 章节批量入库
 
-#### Done
-- [ ] （待办）
+### Day 5-7: 联调
 
----
+- [ ] 全模块联调
+- [ ] 截图 + 演示
+- [ ] 东哥验收
 
-### 🎯 Sprint 4: W4 - 联调 + 测试 + 上线
-
-#### Triage
-- [ ] 💡 灰度发布策略
-- [ ] 💡 应急响应预案
-
-#### Todo
-- [ ] 🔗 全模块联调
-- [ ] 🧪 E2E 测试（50+ 用例）
-- [ ] 📊 压测
-- [ ] 🛡️ 安全扫描 + 等保测评
-- [ ] 📋 微信小程序审核
-- [ ] 🚀 灰度发布（10% → 50% → 100%）
-- [ ] 📊 数据监控
-- [ ] 📞 客服上线
-
-#### Running
-- [ ] （由 AI 自动填充）
-
-#### Review
-- [ ] ⏳ 等测试完成
-
-#### Done
-- [ ] （待办）
+**W2 目标**：产品介绍 + 学术培训完整可用
 
 ---
 
-## 工作流
+## ⏳ W3 任务（待开始）
 
-```
-东哥 review（每天 30 分钟）
-   ↓
-   点击 ✨ Specify（AI 展开）
-   ↓
-   移到 todo
-   ↓
-   AI Worker 自动 pickup
-   ↓
-   进入 running
-   ↓
-   完成后进入 review
-   ↓
-   东哥 review 通过 → done
-   ↓
-   未通过 → 打回 todo
-```
+### 8 个页面 + 12 API
+
+- [ ] service/index 页面（售后首页）
+- [ ] service/medication 页面（用药管理）
+- [ ] service/aer 页面（不良反应上报）
+- [ ] service/reminder 页面（复查提醒）
+- [ ] service/chat 页面（智能客服）
+- [ ] service/logistics 页面（物流查询）
+- [ ] my/index 页面（个人中心）
+- [ ] my/family 页面（家属账号）
+- [ ] 智能客服接入混元大模型
+- [ ] 紧急告警接入腾讯云 IM
 
 ---
 
-## 关键指标
+## ⏳ W4 任务（待开始）
 
-| 指标 | 目标 |
+- [ ] 全模块联调
+- [ ] E2E 测试（50+ 用例）
+- [ ] 压测
+- [ ] 安全扫描
+- [ ] 微信小程序审核
+- [ ] 灰度发布
+
+---
+
+## 🎨 设计定稿记录
+
+| 项目 | 内容 |
 |:---|:---|
-| 任务完成率 | ≥ 90% |
-| 东哥 review 时长 | ≤ 30 分钟/天 |
-| Bug 漏出率 | ≤ 5% |
-| 按时交付率 | ≥ 80% |
+| **风格** | 风格 A · 深蓝科技风 |
+| **主色** | `#0A2540` |
+| **辅色** | `#1565C0` |
+| **决策人** | 东哥 |
+| **日期** | 2026-06-03 |
+| **文档** | `design/设计定稿_风格A.md` |
 
 ---
 
-## 看板视图
+## 📊 关键数据
 
-```bash
-# 终端查看
-hermes kanban list --board xiaofuyao
+| 指标 | 数值 |
+|:---|---:|
+| 已完成文件 | 67 个 |
+| 项目总大小 | 1.66 MB |
+| 累计行数 | ~30,000 行 |
+| API 接口 | 24 |
+| 数据库表 | 15 |
+| UI 组件 | 15 |
+| 云函数 | 5 |
+| 软文数 | 90 |
+| 学术章节 | 289 |
+| 违规词已过滤 | 177 |
 
-# Web 界面（如有）
-http://localhost:8500/kanban/xiaofuyao
+---
+
+## 🔄 工作流
+
+```
+东哥下达任务
+   ↓
+来福拆解为 todo
+   ↓
+AI Worker 自动 pickup
+   ↓
+进入 running（AI 工作）
+   ↓
+完成后进入 review
+   ↓
+东哥验收通过 → done
+   ↓
+未通过 → 打回 todo
 ```
 
 ---
 
-> **版本**：v1.0  
-> **更新日期**：2026-06-03
+## 🎯 下一步行动
+
+1. **立即**：东哥选设计风格 ✅（已完成：风格 A）
+2. **立即**：开始 W2 实施
+3. **W2 结束**：东哥 1 小时验收
+4. **W2 验收后**：开始 W3
+
+---
+
+> **维护人**：来福（AI）  
+> **更新频率**：每个任务完成后实时更新  
+> **下次更新**：W2 Day 1 完成后
