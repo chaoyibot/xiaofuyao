@@ -81,14 +81,17 @@
     <p class="text-gray-600">氟尿嘧啶口服乳售后服务小程序 · 5 种设计风格 + 5 个核心页面 · 2026-06-03</p>
   </div>
 
-  <!-- 风格切换器 -->
-  <div class="style-switcher w-fit">
-    <div v-for="(s, idx) in styles" :key="idx"
-         @click="currentStyle = idx"
-         :class="['style-btn', currentStyle === idx ? 'style-btn-active' : 'bg-gray-100 text-gray-700']">
-      {{ s.name }} · {{ s.label }}
+    <!-- 风格切换器 -->
+    <div class="style-switcher w-fit">
+      <div v-for="(s, idx) in styles" :key="idx"
+           @click="currentStyle = idx"
+           :class="['style-btn', currentStyle === idx ? 'style-btn-active' : 'bg-gray-100 text-gray-700']">
+        <span v-if="idx === 0" class="text-green-400">✓ </span>{{ s.name }} · {{ s.label }}
+      </div>
     </div>
-  </div>
+    <div v-if="currentStyle === 0" class="text-sm text-green-600 font-semibold mb-4">
+      ⭐ 已定稿：风格 A · 深蓝科技风（2026-06-03 · 东哥拍板）
+    </div>
 
   <div class="flex flex-wrap gap-12 justify-center items-start">
     <!-- 手机预览框 -->
