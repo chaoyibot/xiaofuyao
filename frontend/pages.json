@@ -1,0 +1,198 @@
+{
+  "pages": [
+    {
+      "path": "pages/home/index",
+      "style": {
+        "navigationBarTitleText": "小福药",
+        "navigationStyle": "custom",
+        "enablePullDownRefresh": false
+      }
+    },
+    {
+      "path": "pages/product/detail",
+      "style": {
+        "navigationBarTitleText": "产品介绍",
+        "navigationBarBackgroundColor": "#0A2540",
+        "navigationBarTextStyle": "white"
+      }
+    },
+    {
+      "path": "pages/story/list",
+      "style": {
+        "navigationBarTitleText": "患者故事",
+        "navigationBarBackgroundColor": "#0A2540",
+        "navigationBarTextStyle": "white"
+      }
+    },
+    {
+      "path": "pages/story/detail",
+      "style": {
+        "navigationBarTitleText": "故事详情",
+        "navigationBarBackgroundColor": "#0A2540",
+        "navigationBarTextStyle": "white"
+      }
+    },
+    {
+      "path": "pages/insurance/index",
+      "style": {
+        "navigationBarTitleText": "医保查询",
+        "navigationBarBackgroundColor": "#0A2540",
+        "navigationBarTextStyle": "white"
+      }
+    },
+    {
+      "path": "pages/academic/index",
+      "style": {
+        "navigationBarTitleText": "学术中心",
+        "navigationBarBackgroundColor": "#0A2540",
+        "navigationBarTextStyle": "white"
+      }
+    },
+    {
+      "path": "pages/academic/detail",
+      "style": {
+        "navigationBarTitleText": "文献详情",
+        "navigationBarBackgroundColor": "#0A2540",
+        "navigationBarTextStyle": "white"
+      }
+    },
+    {
+      "path": "pages/academic/courses",
+      "style": {
+        "navigationBarTitleText": "培训课件",
+        "navigationBarBackgroundColor": "#0A2540",
+        "navigationBarTextStyle": "white"
+      }
+    },
+    {
+      "path": "pages/academic/calculator",
+      "style": {
+        "navigationBarTitleText": "剂量计算器",
+        "navigationBarBackgroundColor": "#0A2540",
+        "navigationBarTextStyle": "white"
+      }
+    },
+    {
+      "path": "pages/service/index",
+      "style": {
+        "navigationBarTitleText": "售后服务",
+        "navigationStyle": "custom"
+      }
+    },
+    {
+      "path": "pages/service/medication",
+      "style": {
+        "navigationBarTitleText": "用药管理",
+        "navigationBarBackgroundColor": "#0A2540",
+        "navigationBarTextStyle": "white"
+      }
+    },
+    {
+      "path": "pages/service/aer",
+      "style": {
+        "navigationBarTitleText": "不良反应上报",
+        "navigationBarBackgroundColor": "#0A2540",
+        "navigationBarTextStyle": "white"
+      }
+    },
+    {
+      "path": "pages/service/reminder",
+      "style": {
+        "navigationBarTitleText": "复查提醒",
+        "navigationBarBackgroundColor": "#0A2540",
+        "navigationBarTextStyle": "white"
+      }
+    },
+    {
+      "path": "pages/service/chat",
+      "style": {
+        "navigationBarTitleText": "智能客服",
+        "navigationBarBackgroundColor": "#0A2540",
+        "navigationBarTextStyle": "white"
+      }
+    },
+    {
+      "path": "pages/service/logistics",
+      "style": {
+        "navigationBarTitleText": "物流查询",
+        "navigationBarBackgroundColor": "#0A2540",
+        "navigationBarTextStyle": "white"
+      }
+    },
+    {
+      "path": "pages/my/index",
+      "style": {
+        "navigationBarTitleText": "我的",
+        "navigationStyle": "custom"
+      }
+    },
+    {
+      "path": "pages/auth/login",
+      "style": {
+        "navigationBarTitleText": "登录",
+        "navigationBarBackgroundColor": "#0A2540",
+        "navigationBarTextStyle": "white"
+      }
+    },
+    {
+      "path": "pages/my/family",
+      "style": {
+        "navigationBarTitleText": "家属账号",
+        "navigationBarBackgroundColor": "#0A2540",
+        "navigationBarTextStyle": "white"
+      }
+    },
+    {
+      "path": "pages/my/settings",
+      "style": {
+        "navigationBarTitleText": "设置",
+        "navigationBarBackgroundColor": "#0A2540",
+        "navigationBarTextStyle": "white"
+      }
+    }
+  ],
+  "globalStyle": {
+    "navigationBarTextStyle": "white",
+    "navigationBarTitleText": "小福药",
+    "navigationBarBackgroundColor": "#0A2540",
+    "backgroundColor": "#FAFAFA"
+  },
+  "tabBar": {
+    "color": "#999999",
+    "selectedColor": "#0A2540",
+    "backgroundColor": "#FFFFFF",
+    "borderStyle": "black",
+    "list": [
+      {
+        "pagePath": "pages/home/index",
+        "text": "首页",
+        "iconPath": "static/tabbar/home.png",
+        "selectedIconPath": "static/tabbar/home-active.png"
+      },
+      {
+        "pagePath": "pages/product/detail",
+        "text": "产品",
+        "iconPath": "static/tabbar/product.png",
+        "selectedIconPath": "static/tabbar/product-active.png"
+      },
+      {
+        "pagePath": "pages/academic/index",
+        "text": "学术",
+        "iconPath": "static/tabbar/academic.png",
+        "selectedIconPath": "static/tabbar/academic-active.png"
+      },
+      {
+        "pagePath": "pages/service/index",
+        "text": "服务",
+        "iconPath": "static/tabbar/service.png",
+        "selectedIconPath": "static/tabbar/service-active.png"
+      },
+      {
+        "pagePath": "pages/my/index",
+        "text": "我的",
+        "iconPath": "static/tabbar/my.png",
+        "selectedIconPath": "static/tabbar/my-active.png"
+      }
+    ]
+  }
+}
