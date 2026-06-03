@@ -132,7 +132,7 @@ async function reportAdverseEvent(db, openid, params) {
     created_at: new Date()
   })
   if (isUrgent) {
-    // 调用 IM 通知药师/客服
+    // 调用 IM 通知药师/客服（IM 配置后才生效）
     await sendUrgentAlertIM(openid, severity, symptoms)
   }
   return { code: 0, data: { id: res.id, urgent: isUrgent } }
@@ -260,7 +260,12 @@ function fallbackReply(userMessage) {
   if (/饮食|吃什么|忌口/.test(m)) {
     return '🥗 建议：高蛋白、易消化、新鲜蔬果；避免辛辣、生冷、酒精。每日饮水 2000ml+。'
   }
-  return `关于您咨询的问题，建议：\n1. 仔细阅读药品说明书\n2. 联系您的主治医师\n3. 必要时拨打紧急热线 400-888-XXXX\n\n⚠️ 我是 AI 助手，不能替代专业医师诊断。`
+  return `关于您咨询的问题，建议：
+1. 仔细阅读药品说明书
+2. 联系您的主治医师
+3. 必要时拨打紧急热线 ${process.env.EMERGENCY_PHONE || '400-888-XXXX'}
+
+⚠️ 我是 AI 助手，不能替代专业医师诊断。`
 }
 
 async function chatWithBot(db, openid, { message, session_id }) {
@@ -314,7 +319,8 @@ async function chatWithBot(db, openid, { message, session_id }) {
 // ============================================
 
 async function getLogistics(db, openid, orderId) {
-  // TODO: 对接真实物流公司 API
+  // 物流查询（演示版：返回模拟数据，生产环境对接顺丰/京东等 API）
+  // 接入方案：通过第三方聚合 API（如快递鸟）获取实时物流
   return {
     code: 0,
     data: {

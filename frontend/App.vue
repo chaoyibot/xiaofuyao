@@ -3,15 +3,13 @@ import { useUserStore } from '@/stores/user'
 
 export default {
   onLaunch: function () {
-    console.log('🏥 小福药 App Launch')
-
     // 初始化用户信息（从本地存储恢复）
     const userStore = useUserStore()
     userStore.initFromStorage()
 
-    // 检查更新（仅在生产环境）
+    // 检查更新（仅小程序）
     // #ifdef MP-WEIXIN
-    if (wx.canIUse('getUpdateManager')) {
+    if (typeof wx !== 'undefined' && wx.canIUse && wx.canIUse('getUpdateManager')) {
       const updateManager = wx.getUpdateManager()
       updateManager.onCheckForUpdate(function (res) {
         if (res.hasUpdate) {
@@ -32,10 +30,10 @@ export default {
     // #endif
   },
   onShow: function () {
-    console.log('📱 小福药 App Show')
+    // App 切前台
   },
   onHide: function () {
-    console.log('💤 小福药 App Hide')
+    // App 切后台
   }
 }
 </script>

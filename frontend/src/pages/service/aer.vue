@@ -86,6 +86,7 @@
 import { ref } from 'vue'
 import AppHeader from '@/components/AppHeader.vue'
 import MedicalAlert from '@/components/MedicalAlert.vue'
+import { config } from '@/config'
 
 const severity = ref(1)
 const selectedSymptoms = ref([])
@@ -129,7 +130,7 @@ function onSubmit() {
       content: '检测到严重不良反应，建议立即拨打紧急热线或前往就近医院。',
       confirmText: '立即拨打',
       success: (res) => {
-        if (res.confirm) uni.makePhoneCall({ phoneNumber: '400-888-XXXX' })
+        if (res.confirm) uni.makePhoneCall({ phoneNumber: config.emergencyPhone })
       }
     })
   } else {

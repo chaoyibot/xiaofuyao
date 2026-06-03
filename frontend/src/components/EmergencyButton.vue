@@ -10,8 +10,9 @@
 </template>
 
 <script setup>
+import { config } from '@/config'
 const props = defineProps({
-  phone: { type: String, default: '400-888-XXXX' }
+  phone: { type: String, default: config.emergencyPhone }
 })
 
 const emit = defineEmits(['call'])

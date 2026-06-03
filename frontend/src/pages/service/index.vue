@@ -61,7 +61,7 @@
     </view>
 
     <!-- 紧急求助 -->
-    <EmergencyButton phone="400-888-XXXX" />
+    <EmergencyButton :phone="config.emergencyPhone" />
 
     <!-- 风险提示 -->
     <MedicalAlert
@@ -73,10 +73,11 @@
 </template>
 
 <script setup>
-import { ref, computed } from 'vue'
+import { ref } from 'vue'
 import AppHeader from '@/components/AppHeader.vue'
 import EmergencyButton from '@/components/EmergencyButton.vue'
 import MedicalAlert from '@/components/MedicalAlert.vue'
+import { config } from '@/config'
 
 const user = ref({
   name: '张女士',

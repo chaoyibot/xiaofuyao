@@ -63,6 +63,7 @@
 import { ref, onMounted, nextTick } from 'vue'
 import AppHeader from '@/components/AppHeader.vue'
 import ChatBubble from '@/components/ChatBubble.vue'
+import { config } from '@/config'
 
 const botStatus = ref('AI 药师在线 · 接入混元大模型')
 const inputText = ref('')
@@ -126,7 +127,7 @@ function generateBotReply(userMessage) {
     }
   }
   // 默认回复
-  return `关于"${userMessage}"，建议您：\n\n1. 仔细阅读药品说明书\n2. 联系您的主治医师\n3. 必要时拨打 400-888-XXXX\n\n请在医生指导下使用本品。`
+  return `关于您咨询的问题，建议：\n1. 仔细阅读药品说明书\n2. 联系您的主治医师\n3. 必要时拨打紧急热线 ${config.emergencyPhone}\n\n⚠️ 我是 AI 助手，不能替代专业医师诊断。`
 }
 
 async function onSend() {

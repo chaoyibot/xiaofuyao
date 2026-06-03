@@ -1,5 +1,6 @@
 import { defineStore } from 'pinia'
 import { ref, computed } from 'vue'
+import { login as apiLogin } from '@/api/user'
 
 export const useUserStore = defineStore('user', () => {
   const userInfo = ref(null)
@@ -19,22 +20,21 @@ export const useUserStore = defineStore('user', () => {
       const family = uni.getStorageSync('family_members')
       if (family) familyMembers.value = family
     } catch (e) {
-      console.error('恢复用户信息失败:', e)
+      // 静默失败：本地存储不可用
     }
   }
 
   async function login(code) {
-    // 调用云函数 wx.login
     try {
-      const res = await uni.login({ provider: 'weixin' })
-      // TODO: 调用后端登录 API
-      // const data = await apiLogin(res.code)
-      // token.value = data.token
-      // userInfo.value = data.userInfo
-      // uni.setStorageSync('user_info', data)
-      console.log('登录 code:', res.code)
+      // 优先使用传入的 code，否则调用 wx.login
+      const loginCode = code || (await uni.login({ provider: 'weixin' })).code
+      const data = await apiLogin(loginCode)
+      token.value = data.token
+      userInfo.value = data.userInfo
+      uni.setStorageSync('user_info', data)
+      return data
     } catch (e) {
-      console.error('登录失败:', e)
+      // 登录失败抛出，让调用方处理
       throw e
     }
   }

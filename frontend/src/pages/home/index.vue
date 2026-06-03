@@ -39,7 +39,7 @@ async function loadHomeData() {
     banners.value = homeData.banners || []
     featuredStories.value = stories || []
   } catch (e) {
-    console.error('加载首页数据失败:', e)
+    // 加载失败：弹 toast 提示，前端兜底显示空数据
     uni.showToast({ title: '加载失败', icon: 'none' })
   }
 }

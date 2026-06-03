@@ -47,8 +47,7 @@ export async function request(options) {
 
     return body.data
   } catch (e) {
-    if (showLoading) uni.hideLoading()
-    console.error(`[API] ${url} 失败:`, e)
+    // 错误已通过 message 字段返回给前端，这里不再重复记录
     throw e
   }
 }
