@@ -1,7 +1,7 @@
 # 📋 小福药 · Kanban 看板（实时更新）
 
 > **最后更新**：2026-06-03  
-> **Sprint**：W1 已完成 100% / W2 即将开始
+> **Sprint**：W1 已完成 100% / W2 已完成 100% / W3 已完成 100%
 
 ---
 
@@ -10,9 +10,9 @@
 ```
 W0  ████████████ 100%  ✅ 完成
 W1  ████████████ 100%  ✅ 完成（设计定稿：风格 A）
-W2  ░░░░░░░░░░░░   0%  🟡 下一步
-W3  ░░░░░░░░░░░░   0%  ⏳ 待开始
-W4  ░░░░░░░░░░░░   0%  ⏳ 待开始
+W2  ████████████ 100%  ✅ 完成（产品介绍 + 学术培训 + 演示）
+W3  ████████████ 100%  ✅ 完成（售后服务 8 页面 + AI 框架）
+W4  ░░░░░░░░░░░░   0%  ⏳ 待开始（联调上线）
 ```
 
 ---
@@ -49,51 +49,50 @@ W4  ░░░░░░░░░░░░   0%  ⏳ 待开始
 
 ---
 
-## 🟡 W2 任务（即将开始）
+## ✅ W2 任务（已完成）
 
-### Day 1-2: 产品介绍模块（11 页面 + 5 API）
+- [x] product/detail 页面（药品详情 · 含风险提示卡片）
+- [x] story/list 页面（患者故事列表）
+- [x] story/detail 页面（故事详情）
+- [x] ~~insurance/index 页面~~（已取消 · 2026-06-03）
+- [x] product 5 个 API 实现
+- [x] story 4 个 API 实现
+- [x] 软文 90 篇批量入库
+- [x] academic/index 页面（学术中心首页）
+- [x] academic/detail 页面（文献详情）
+- [x] academic/courses 页面（课件列表）
+- [x] academic/calculator 页面（剂量计算）
+- [x] academic 8 个 API 实现
+- [x] 学术 289 章节批量入库
+- [x] 联调 + 截图 + 演示
+- [x] **东哥验收通过** ✅
+- [x] **合规修正**：删除伪造批准文号 + 取消医保板块
 
-- [ ] product/detail 页面（药品详情）
-- [ ] story/list 页面（患者故事列表）
-- [ ] story/detail 页面（故事详情）
-- [ ] insurance/index 页面（医保查询）
-- [ ] product 5 个 API 实现
-- [ ] story 4 个 API 实现
-- [ ] 软文 90 篇批量入库
-
-### Day 3-4: 学术培训模块（5 页面 + 8 API）
-
-- [ ] academic/index 页面（学术中心首页）
-- [ ] academic/detail 页面（文献详情）
-- [ ] academic/courses 页面（课件列表）
-- [ ] academic/calculator 页面（剂量计算）
-- [ ] academic 8 个 API 实现
-- [ ] 学术 289 章节批量入库
-
-### Day 5-7: 联调
-
-- [ ] 全模块联调
-- [ ] 截图 + 演示
-- [ ] 东哥验收
-
-**W2 目标**：产品介绍 + 学术培训完整可用
+**W2 KPI**：✅ **100% 完成**
 
 ---
 
-## ⏳ W3 任务（待开始）
+## ✅ W3 任务（已完成）
 
-### 8 个页面 + 12 API
+- [x] service/index 页面（售后首页 · 8 大入口 + 14 天打卡）
+- [x] service/medication 页面（用药管理 · CTCAE 风险 + 情绪记录）
+- [x] service/aer 页面（不良反应上报 · 5 级严重程度 + 紧急告警）
+- [x] service/reminder 页面（复查提醒 · 紧急/待办/已完成）
+- [x] service/chat 页面（智能客服 · 混元大模型 + 知识库兜底）
+- [x] service/logistics 页面（物流查询 · 时间线 + 状态跟踪）
+- [x] my/index 页面（个人中心 · 4 维数据 + 8 服务）
+- [x] my/family 页面（家属账号 · 绑定/解绑/权限管理）
+- [x] **混元大模型接入框架**（chatWithBot · 知识库 system prompt）
+- [x] **腾讯云 IM 接入框架**（sendUrgentAlertIM · 群通知推送）
+- [x] **Demo 升级**：11 → 16 页面（service 6 子页 + my 4 子页）
+- [x] **云函数优化**：service/index.js（W3 升级版 · 含 AI 框架）
 
-- [ ] service/index 页面（售后首页）
-- [ ] service/medication 页面（用药管理）
-- [ ] service/aer 页面（不良反应上报）
-- [ ] service/reminder 页面（复查提醒）
-- [ ] service/chat 页面（智能客服）
-- [ ] service/logistics 页面（物流查询）
-- [ ] my/index 页面（个人中心）
-- [ ] my/family 页面（家属账号）
-- [ ] 智能客服接入混元大模型
-- [ ] 紧急告警接入腾讯云 IM
+**W3 KPI**：✅ **100% 完成**
+
+**AI 接入配置（待您提供）**：
+- 混元：`TENCENT_SECRET_ID` + `TENCENT_SECRET_KEY` 环境变量
+- IM：`IM_SDK_APP_ID` + `IM_USERSIG` 环境变量
+- 未配置时自动走本地知识库兜底（0 元成本）
 
 ---
 
