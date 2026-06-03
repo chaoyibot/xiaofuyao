@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>小福药 · 氟尿嘧啶口服乳售后服务小程序 · 初版预览</title>
+<title>小福药 · W3 完整版 · 16 页面</title>
 <script src="https://cdn.tailwindcss.com"></script>
 <script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
 <script src="./data.js"></script>
@@ -78,7 +78,7 @@
   <!-- 标题 -->
   <div class="mb-6">
     <h1 class="text-3xl font-bold text-gray-800 mb-2">🏥 小福药 · 初版预览</h1>
-    <p class="text-gray-600">氟尿嘧啶口服乳售后服务小程序 · 5 种设计风格 + 5 个核心页面 · 2026-06-03</p>
+    <p class="text-gray-600">氟尿嘧啶口服乳售后服务小程序 · W3 完整版 · 16 页面 · 2026-06-03</p>
   </div>
 
     <!-- 风格切换器 -->
@@ -287,122 +287,294 @@
 
             <!-- 售后服务 -->
             <div v-else-if="currentTab === 'service'" key="service" class="content-area">
-              <div class="header">
+              <!-- 子页面切换 -->
+              <div class="card p-3 mb-3 flex items-center justify-between" style="background: linear-gradient(135deg, var(--primary), var(--primary-light)); color: white">
                 <div>
-                  <div class="text-xs text-gray-500">早上好 ☀️</div>
-                  <div class="text-lg font-bold">张女士</div>
+                  <div class="text-xs opacity-90">售后服务中心</div>
+                  <div class="text-lg font-bold">{{ serviceSubPages.find(p => p.key === currentServiceSub)?.label || 'W3 子页面' }}</div>
                 </div>
-                <div class="text-2xl">👤</div>
+                <div class="text-2xl">🛠️</div>
               </div>
 
-              <!-- 今日用药提醒 -->
-              <div class="card p-4 mb-3" style="background: linear-gradient(135deg, var(--primary), var(--primary-light)); color: white">
-                <div class="flex justify-between items-center">
-                  <div>
-                    <div class="text-xs opacity-90">今日用药</div>
-                    <div class="text-2xl font-bold">3 次</div>
-                    <div class="text-xs opacity-90 mt-1">下次服药：14:00</div>
-                  </div>
-                  <div class="text-4xl">💊</div>
-                </div>
-              </div>
-
-              <!-- 用药打卡日历 -->
-              <div class="card p-4 mb-3">
-                <div class="flex justify-between items-center mb-3">
-                  <div class="text-sm font-bold text-gray-800">📅 用药打卡 · 连续 12 天</div>
-                  <div class="text-xs" style="color: var(--primary)">查看记录 →</div>
-                </div>
-                <div class="grid grid-cols-7 gap-1">
-                  <div v-for="(day, i) in weekDays" :key="i" class="text-center text-xs text-gray-500 py-1">{{ day }}</div>
-                  <div v-for="(status, i) in medicationDays" :key="i" class="calendar-day"
-                       :class="{'day-taken': status === 'taken', 'day-future': status === 'future', 'day-missed': status === 'missed'}">
-                    {{ i + 1 }}
-                  </div>
+              <div class="px-4 py-2 mb-3" style="background: white; position: sticky; top: 0; z-index: 10">
+                <div class="flex gap-1 overflow-x-auto">
+                  <div
+                    v-for="p in serviceSubPages"
+                    :key="p.key"
+                    :class="['px-3 py-1 rounded-full text-xs whitespace-nowrap cursor-pointer', currentServiceSub === p.key ? 'font-semibold' : '']"
+                    :style="currentServiceSub === p.key ? 'background: var(--primary); color: white' : 'background: #f0f0f0; color: #666'"
+                    @click="currentServiceSub = p.key"
+                  >{{ p.icon }} {{ p.label }}</div>
                 </div>
               </div>
 
-              <!-- 服务功能入口 -->
-              <div class="card p-4 mb-3">
-                <div class="text-sm font-bold text-gray-800 mb-3">🛠️ 售后服务中心</div>
-                <div class="grid grid-cols-4 gap-3">
-                  <div v-for="svc in serviceEntries" :key="svc.label" class="text-center">
-                    <div class="w-12 h-12 mx-auto rounded-full flex items-center justify-center text-xl mb-1" :style="{background: 'var(--bg-soft)'}">{{ svc.icon }}</div>
-                    <div class="text-xs text-gray-700">{{ svc.label }}</div>
+              <!-- service/index 默认展示 -->
+              <div v-if="currentServiceSub === 'index'">
+                <div class="card p-4 mb-3" style="background: linear-gradient(135deg, var(--primary), var(--primary-light)); color: white">
+                  <div class="flex justify-between items-center">
+                    <div>
+                      <div class="text-xs opacity-90">今日用药</div>
+                      <div class="text-2xl font-bold">3 次</div>
+                      <div class="text-xs opacity-90 mt-1">下次服药：14:00</div>
+                    </div>
+                    <div class="text-4xl">💊</div>
+                  </div>
+                </div>
+
+                <div class="card p-4 mb-3">
+                  <div class="grid grid-cols-4 gap-3 text-center">
+                    <div v-for="s in serviceEntries" :key="s.label" @click="currentServiceSub = s.target" class="cursor-pointer">
+                      <div class="w-12 h-12 mx-auto rounded-full flex items-center justify-center text-xl mb-1" style="background: var(--bg-soft)">{{ s.icon }}</div>
+                      <div class="text-xs text-gray-700">{{ s.label }}</div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="card p-4 mb-3" style="background: #FFEBEE; border-left: 4px solid #F44336">
+                  <div class="flex items-center gap-3">
+                    <div class="text-3xl">🆘</div>
+                    <div class="flex-1">
+                      <div class="text-sm font-bold" style="color: #B71C1C">紧急求助</div>
+                      <div class="text-xs" style="color: #B71C1C">严重不良反应？立即接通医师</div>
+                    </div>
+                    <button class="px-3 py-1.5 rounded text-white text-sm font-bold" style="background: #F44336">立即拨打</button>
                   </div>
                 </div>
               </div>
 
-              <!-- 紧急求助按钮 -->
-              <div class="card p-4 mb-3" style="background: #FFEBEE; border-left: 4px solid #F44336">
-                <div class="flex items-center gap-3">
-                  <div class="text-3xl">🆘</div>
-                  <div class="flex-1">
-                    <div class="text-sm font-bold" style="color: #B71C1C">紧急求助</div>
-                    <div class="text-xs" style="color: #B71C1C">严重不良反应？立即接通医师</div>
+              <!-- service/medication -->
+              <div v-else-if="currentServiceSub === 'medication'">
+                <div class="card p-4 mb-3" style="background: linear-gradient(135deg, var(--primary), var(--primary-light)); color: white">
+                  <div class="grid grid-cols-3 gap-2 text-center">
+                    <div><div class="text-2xl font-bold">12</div><div class="text-xs opacity-90">连续打卡</div></div>
+                    <div><div class="text-2xl font-bold">86%</div><div class="text-xs opacity-90">完成率</div></div>
+                    <div><div class="text-2xl font-bold">3/3</div><div class="text-xs opacity-90">今日</div></div>
                   </div>
-                  <button class="px-4 py-2 rounded-lg text-white text-sm font-bold" style="background: #F44336">立即拨打</button>
+                </div>
+                <div class="card p-4 mb-3">
+                  <div class="text-sm font-bold text-gray-800 mb-3">📋 今日用药计划</div>
+                  <div v-for="(d, i) in todayDoses" :key="i" class="flex items-center py-2 border-b border-gray-100 last:border-0">
+                    <div class="w-20 text-sm font-semibold" style="color: var(--primary)">{{ d.hour }}</div>
+                    <div class="flex-1 text-sm">💊 {{ d.amount }}</div>
+                    <div v-if="d.status==='taken'" class="text-green-500 text-xl">✓</div>
+                    <button v-else class="text-xs px-3 py-1 rounded text-white" style="background: var(--primary)">打卡</button>
+                  </div>
+                </div>
+                <div class="card p-4 mb-3">
+                  <div class="text-sm font-bold text-gray-800 mb-3">📅 14 天打卡日历</div>
+                  <div class="grid grid-cols-7 gap-1">
+                    <div v-for="d in ['一','二','三','四','五','六','日']" :key="d" class="text-center text-xs text-gray-500 py-1">{{ d }}</div>
+                    <div v-for="(s, i) in streakDays" :key="i" :class="['aspect-square flex items-center justify-center rounded text-xs', s==='taken' ? 'font-semibold' : '']" :style="streakStyle(s)">{{ i+1 }}</div>
+                  </div>
                 </div>
               </div>
 
-              <!-- 待办提醒 -->
-              <div class="card p-4">
-                <div class="text-sm font-bold text-gray-800 mb-3">🔔 待办提醒</div>
-                <div v-for="(todo, i) in todoList" :key="i" class="flex items-center gap-3 py-2 border-b last:border-0 border-gray-100">
-                  <div class="text-xl">{{ todo.icon }}</div>
-                  <div class="flex-1">
-                    <div class="text-sm text-gray-800">{{ todo.title }}</div>
-                    <div class="text-xs text-gray-500">{{ todo.time }}</div>
+              <!-- service/aer -->
+              <div v-else-if="currentServiceSub === 'aer'">
+                <div class="card p-4 mb-3">
+                  <div class="text-sm font-bold text-gray-800 mb-3">⚠️ 严重程度（CTCAE 分级）</div>
+                  <div class="grid grid-cols-5 gap-1">
+                    <div v-for="s in [1,2,3,4,5]" :key="s" class="text-center p-2 rounded border-2" :style="`border-color: ${['#4CAF50','#FFC107','#FF9800','#F44336','#B71C1C'][s-1]}; color: ${['#4CAF50','#FFC107','#FF9800','#F44336','#B71C1C'][s-1]}`">
+                      <div class="text-2xl font-bold">{{ s }}</div>
+                      <div class="text-xs">{{ ['轻度','中度','重度','危及','死亡'][s-1] }}</div>
+                    </div>
                   </div>
-                  <div class="text-xs" style="color: var(--primary)">查看 →</div>
+                </div>
+                <div class="card p-4 mb-3">
+                  <div class="text-sm font-bold text-gray-800 mb-3">🩺 症状选择（可多选）</div>
+                  <div class="flex flex-wrap gap-1">
+                    <div v-for="sym in commonSymptoms" :key="sym" class="px-3 py-1 rounded-full text-xs" style="background: var(--bg-soft); color: var(--primary)">{{ sym }}</div>
+                  </div>
+                </div>
+                <button class="w-full py-3 rounded-lg text-white text-base font-bold" style="background: #F44336">立即上报</button>
+              </div>
+
+              <!-- service/reminder -->
+              <div v-else-if="currentServiceSub === 'reminder'">
+                <div class="card p-4 mb-3">
+                  <div class="grid grid-cols-3 gap-2 text-center">
+                    <div><div class="text-2xl font-bold" style="color: #F44336">2</div><div class="text-xs text-gray-500">紧急</div></div>
+                    <div><div class="text-2xl font-bold" style="color: var(--primary)">5</div><div class="text-xs text-gray-500">待办</div></div>
+                    <div><div class="text-2xl font-bold text-green-500">12</div><div class="text-xs text-gray-500">已完成</div></div>
+                  </div>
+                </div>
+                <div v-for="(r, i) in reminders" :key="i" class="card p-3 mb-2 border-l-4" :style="`border-left-color: ${r.urgent ? '#F44336' : 'var(--primary-light)'}`">
+                  <div class="flex justify-between items-center mb-1">
+                    <div class="text-sm font-semibold text-gray-800">{{ r.title }}</div>
+                    <span v-if="r.urgent" class="text-xs px-2 py-0.5 rounded" style="background: #FFEBEE; color: #B71C1C">紧急</span>
+                  </div>
+                  <div class="text-xs text-gray-500">📅 {{ r.date }} · 👨‍⚕️ {{ r.doctor }}</div>
+                </div>
+              </div>
+
+              <!-- service/chat -->
+              <div v-else-if="currentServiceSub === 'chat'">
+                <div class="card p-3 mb-3 flex items-center gap-2" style="background: #E8F5E9">
+                  <div class="w-3 h-3 rounded-full bg-green-500"></div>
+                  <div class="text-sm" style="color: #2E7D32">AI 药师在线 · 接入混元大模型</div>
+                </div>
+                <div class="space-y-2 mb-3">
+                  <div v-for="m in chatMessages" :key="m.id" :class="['flex', m.role === 'user' ? 'justify-end' : 'justify-start']">
+                    <div :class="['max-w-[70%] px-3 py-2 rounded-2xl text-sm whitespace-pre-line', m.role === 'user' ? 'text-white' : 'bg-gray-100']" :style="m.role === 'user' ? 'background: var(--primary)' : ''">{{ m.content }}</div>
+                  </div>
+                </div>
+                <div class="flex gap-1 overflow-x-auto pb-2 mb-3">
+                  <div v-for="q in chatQuick" :key="q" class="px-3 py-1 rounded-full text-xs whitespace-nowrap cursor-pointer" style="background: var(--bg-soft); color: var(--primary)">{{ q }}</div>
+                </div>
+                <div class="flex gap-2">
+                  <input class="flex-1 px-4 py-2 rounded-full text-sm bg-gray-100" placeholder="请输入您的问题..." />
+                  <button class="px-5 py-2 rounded-full text-white text-sm" style="background: var(--primary)">发送</button>
+                </div>
+              </div>
+
+              <!-- service/logistics -->
+              <div v-else-if="currentServiceSub === 'logistics'">
+                <div class="card p-4 mb-3">
+                  <div class="flex items-center gap-2 mb-2">
+                    <span class="text-base font-bold" style="color: var(--primary)">🚚 顺丰速运</span>
+                    <span class="text-xs px-2 py-0.5 rounded" style="background: #E3F2FD; color: #1565C0">运输中</span>
+                  </div>
+                  <div class="text-xs text-gray-500">单号：SF1234567890 · 预计到达：2026-06-05</div>
+                </div>
+                <div class="card p-4 mb-3">
+                  <div class="text-sm font-bold text-gray-800 mb-3">📍 配送轨迹</div>
+                  <div class="space-y-3">
+                    <div v-for="(h, i) in logistics" :key="i" class="flex gap-3 relative">
+                      <div class="w-3 h-3 rounded-full mt-1.5 flex-shrink-0" :style="i === 0 ? 'background: var(--primary); box-shadow: 0 0 0 4px rgba(21,101,192,0.2)' : 'background: #BBDEFB'"></div>
+                      <div class="flex-1" :class="i === 0 ? 'font-semibold' : ''" :style="i === 0 ? 'color: var(--primary)' : ''">
+                        <div class="text-sm">{{ h.status }}</div>
+                        <div class="text-xs text-gray-500">{{ h.time }}</div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
 
             <!-- 我的 -->
             <div v-else-if="currentTab === 'my'" key="my" class="content-area">
-              <div class="hero rounded-b-3xl px-5 py-6 -mt-2">
-                <div class="flex items-center gap-3">
-                  <div class="w-16 h-16 rounded-full bg-white/20 flex items-center justify-center text-3xl">👤</div>
-                  <div class="text-white">
-                    <div class="text-base font-bold">张女士</div>
-                    <div class="text-xs opacity-90">已用药 32 天 · 治疗中</div>
+              <!-- 子页面切换 -->
+              <div class="card p-3 mb-3 flex items-center justify-between" style="background: linear-gradient(135deg, var(--primary), var(--primary-light)); color: white">
+                <div>
+                  <div class="text-xs opacity-90">个人中心</div>
+                  <div class="text-lg font-bold">{{ mySubPages.find(p => p.key === currentMySub)?.label || '我的' }}</div>
+                </div>
+                <div class="text-2xl">👤</div>
+              </div>
+
+              <div class="px-4 py-2 mb-3" style="background: white; position: sticky; top: 0; z-index: 10">
+                <div class="flex gap-1 overflow-x-auto">
+                  <div
+                    v-for="p in mySubPages"
+                    :key="p.key"
+                    :class="['px-3 py-1 rounded-full text-xs whitespace-nowrap cursor-pointer', currentMySub === p.key ? 'font-semibold' : '']"
+                    :style="currentMySub === p.key ? 'background: var(--primary); color: white' : 'background: #f0f0f0; color: #666'"
+                    @click="currentMySub = p.key"
+                  >{{ p.icon }} {{ p.label }}</div>
+                </div>
+              </div>
+
+              <!-- my/index 默认 -->
+              <div v-if="currentMySub === 'index'">
+                <div class="card p-4 mb-3">
+                  <div class="grid grid-cols-4 gap-2 text-center">
+                    <div><div class="text-xl font-bold" style="color: var(--primary)">12</div><div class="text-xs text-gray-500">连续打卡</div></div>
+                    <div><div class="text-xl font-bold" style="color: var(--primary)">3</div><div class="text-xs text-gray-500">复查提醒</div></div>
+                    <div><div class="text-xl font-bold" style="color: var(--primary)">5</div><div class="text-xs text-gray-500">学习记录</div></div>
+                    <div><div class="text-xl font-bold" style="color: var(--primary)">1</div><div class="text-xs text-gray-500">家属账号</div></div>
                   </div>
                 </div>
-                <div class="grid grid-cols-3 gap-2 mt-4 text-center text-white">
-                  <div>
-                    <div class="text-xl font-bold">12</div>
-                    <div class="text-xs opacity-90">连续打卡</div>
+                <div class="card p-4 mb-3">
+                  <div class="text-sm font-bold text-gray-800 mb-3">📋 我的服务</div>
+                  <div class="grid grid-cols-4 gap-3 text-center">
+                    <div v-for="item in myEntries" :key="item.label" @click="item.target && (currentMySub = item.target)" class="cursor-pointer">
+                      <div class="text-2xl mb-1">{{ item.icon }}</div>
+                      <div class="text-xs text-gray-700">{{ item.label }}</div>
+                    </div>
                   </div>
-                  <div>
-                    <div class="text-xl font-bold">3</div>
-                    <div class="text-xs opacity-90">复查提醒</div>
-                  </div>
-                  <div>
-                    <div class="text-xl font-bold">5</div>
-                    <div class="text-xs opacity-90">健康讲座</div>
+                </div>
+                <div class="card p-4 mb-3">
+                  <div class="text-sm font-bold text-gray-800 mb-3">⚙️ 设置</div>
+                  <div v-for="setting in settings" :key="setting.label" @click="setting.target && (currentMySub = setting.target)" class="flex items-center justify-between py-3 border-b last:border-0 border-gray-100 cursor-pointer">
+                    <div class="flex items-center gap-2">
+                      <div>{{ setting.icon }}</div>
+                      <div class="text-sm text-gray-800">{{ setting.label }}</div>
+                    </div>
+                    <div class="text-gray-400">›</div>
                   </div>
                 </div>
               </div>
 
-              <div class="card p-4 mt-4">
-                <div class="text-sm font-bold text-gray-800 mb-3">📋 我的服务</div>
-                <div class="grid grid-cols-4 gap-3">
-                  <div class="text-center" v-for="item in myEntries" :key="item.label">
-                    <div class="text-2xl mb-1">{{ item.icon }}</div>
-                    <div class="text-xs text-gray-700">{{ item.label }}</div>
+              <!-- my/family -->
+              <div v-else-if="currentMySub === 'family'">
+                <div class="card p-4 mb-3" style="background: var(--bg-soft)">
+                  <div class="flex items-center gap-3">
+                    <div class="text-5xl">👨‍👩‍👧</div>
+                    <div class="flex-1">
+                      <div class="text-sm font-bold" style="color: var(--primary)">家属共享</div>
+                      <div class="text-xs text-gray-500">添加家属账号同步查看您的治疗情况</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="card p-3 mb-3 flex items-center gap-3">
+                  <div class="w-16 h-16 rounded-full flex items-center justify-center text-3xl" style="background: var(--bg-soft)">👨</div>
+                  <div class="flex-1">
+                    <div class="flex items-center gap-2 mb-1">
+                      <span class="text-base font-semibold">李明</span>
+                      <span class="text-xs px-2 py-0.5 rounded" style="background: var(--bg-soft); color: var(--primary)">配偶</span>
+                    </div>
+                    <div class="text-xs text-gray-500">📱 138****1234</div>
+                    <div class="text-xs text-gray-500">权限：全部权限</div>
+                  </div>
+                  <button class="text-xs px-3 py-1 rounded bg-gray-100">编辑</button>
+                </div>
+                <div class="card p-3 mb-3 flex items-center justify-center" style="border: 2px dashed var(--primary-light); background: white">
+                  <span class="text-2xl mr-2" style="color: var(--primary)">+</span>
+                  <span class="text-sm" style="color: var(--primary)">添加家属账号</span>
+                </div>
+                <div class="card p-4 mb-3">
+                  <div class="text-sm font-bold text-gray-800 mb-3">🔐 权限说明</div>
+                  <div v-for="p in familyPerms" :key="p.title" class="flex items-center py-2 border-b border-gray-100 last:border-0">
+                    <div class="text-2xl mr-3">{{ p.icon }}</div>
+                    <div class="flex-1">
+                      <div class="text-sm text-gray-800">{{ p.title }}</div>
+                      <div class="text-xs text-gray-500">{{ p.desc }}</div>
+                    </div>
                   </div>
                 </div>
               </div>
 
-              <div class="card p-4 mt-3">
-                <div class="text-sm font-bold text-gray-800 mb-3">⚙️ 设置</div>
-                <div v-for="setting in settings" :key="setting.label" class="flex items-center justify-between py-3 border-b last:border-0 border-gray-100">
-                  <div class="flex items-center gap-2">
-                    <div>{{ setting.icon }}</div>
-                    <div class="text-sm text-gray-800">{{ setting.label }}</div>
+              <!-- my/settings -->
+              <div v-else-if="currentMySub === 'settings'">
+                <div class="card p-4 mb-3">
+                  <div class="text-sm font-bold text-gray-800 mb-3">⚙️ 系统设置</div>
+                  <div v-for="s in systemSettings" :key="s.label" class="flex items-center justify-between py-3 border-b border-gray-100 last:border-0">
+                    <div class="flex items-center gap-2">
+                      <span class="text-xl">{{ s.icon }}</span>
+                      <span class="text-sm">{{ s.label }}</span>
+                    </div>
+                    <span class="text-gray-400">›</span>
                   </div>
-                  <div class="text-gray-400">›</div>
+                </div>
+                <div class="card p-4 mb-3" style="background: var(--bg-soft)">
+                  <div class="text-sm text-center" style="color: var(--primary)">
+                    <div class="text-2xl mb-1">🏥</div>
+                    <div class="font-bold">小福药 v0.3.0</div>
+                    <div class="text-xs text-gray-500 mt-1">中和制药官方出品</div>
+                  </div>
+                </div>
+                <button class="w-full py-3 rounded-lg text-sm" style="background: #FFEBEE; color: #B71C1C">退出登录</button>
+              </div>
+
+              <!-- auth/login -->
+              <div v-else-if="currentMySub === 'login'">
+                <div class="card p-6 mb-3 text-center">
+                  <div class="text-6xl mb-3">🏥</div>
+                  <div class="text-xl font-bold mb-1" style="color: var(--primary)">小福药</div>
+                  <div class="text-xs text-gray-500 mb-6">氟尿嘧啶口服乳售后服务平台</div>
+                  <button class="w-full py-3 rounded-lg text-white text-sm font-bold mb-2" style="background: #07C160">微信一键登录</button>
+                  <button class="w-full py-3 rounded-lg text-sm" style="background: var(--bg-soft); color: var(--primary)">手机号登录</button>
+                  <div class="text-xs text-gray-400 mt-4">登录即同意《用户协议》《隐私政策》</div>
                 </div>
               </div>
             </div>
@@ -444,7 +616,7 @@
 
         <div class="alert-info mt-4">
           <div class="font-bold mb-1">💡 选型建议</div>
-          <div>东哥您可以点击上方 5 个 Tab 浏览每个风格的 5 个核心页面（首页/产品/学术/服务/我的），最后告诉我哪个风格最对您的胃口。</div>
+          <div>东哥您可以点击下方 5 个主 Tab（首页/产品/学术/服务/我的），每个主 Tab 内有 4-6 个子页面（含 W3 售后服务 8 页面），所有交互均可点击体验。</div>
         </div>
       </div>
 
@@ -569,6 +741,70 @@ createApp({
 
     const currentStyle = ref(0);
     const currentTab = ref('home');
+    const currentServiceSub = ref('index');
+    const currentMySub = ref('index');
+
+    // W3 子页面配置
+    const serviceSubPages = [
+      { key: 'index', label: '首页', icon: '🏠' },
+      { key: 'medication', label: '用药打卡', icon: '💊' },
+      { key: 'aer', label: '不良反应', icon: '🚨' },
+      { key: 'reminder', label: '复查提醒', icon: '🔔' },
+      { key: 'chat', label: '智能客服', icon: '🤖' },
+      { key: 'logistics', label: '物流查询', icon: '📦' }
+    ];
+
+    const mySubPages = [
+      { key: 'index', label: '个人中心', icon: '👤' },
+      { key: 'family', label: '家属账号', icon: '👨‍👩‍👧' },
+      { key: 'settings', label: '设置', icon: '⚙️' },
+      { key: 'login', label: '登录', icon: '🔐' }
+    ];
+
+    // W3 数据
+    const todayDoses = [
+      { hour: '08:00', amount: '400mg（1 支）', status: 'taken' },
+      { hour: '14:00', amount: '400mg（1 支）', status: 'pending' },
+      { hour: '20:00', amount: '400mg（1 支）', status: 'pending' }
+    ];
+    const streakDays = ['taken','taken','missed','taken','taken','taken','taken','taken','taken','taken','today','future','future','future'];
+    function streakStyle(s) {
+      if (s === 'taken') return 'background: var(--primary); color: white';
+      if (s === 'today') return 'background: #FF9800; color: white';
+      if (s === 'missed') return 'background: #FFEBEE; color: #F44336';
+      return 'background: #F5F5F5; color: #999';
+    }
+    const commonSymptoms = ['恶心','呕吐','腹泻','口腔黏膜炎','白细胞减少','血小板减少','贫血','发热','皮疹','手足综合征','疲劳','食欲下降'];
+    const reminders = [
+      { title: '血常规复查', date: '明天 09:00', doctor: '王医师', urgent: true },
+      { title: '肝肾功能检查', date: '2026-06-05 09:00', doctor: '王医师', urgent: true },
+      { title: '影像学复查（CT）', date: '2026-06-15 14:00', doctor: '张主任', urgent: false },
+      { title: '肿瘤标志物检测', date: '2026-06-20 10:00', doctor: '王医师', urgent: false }
+    ];
+    const chatMessages = [
+      { id: 1, role: 'bot', content: '您好！我是您的专属 AI 药师助手 🤖\n\n我可以帮您解答关于氟尿嘧啶口服乳的用药问题。' },
+      { id: 2, role: 'user', content: '怎么服药？' },
+      { id: 3, role: 'bot', content: '📋 用法用量请严格遵医嘱。一般餐后 30 分钟温水送服，整支服用勿拆分。' }
+    ];
+    const chatQuick = ['怎么服药','漏服怎么办','常见副作用','何时复查','饮食注意'];
+    const logistics = [
+      { status: '派送中，快递员正在派送', time: '2026-06-03 18:45' },
+      { status: '运输中，已到达长沙分拣中心', time: '2026-06-03 14:30' },
+      { status: '已发货，仓库出库', time: '2026-06-03 10:00' }
+    ];
+    const familyPerms = [
+      { icon: '📋', title: '基础信息', desc: '查看患者基本信息、用药方案' },
+      { icon: '💊', title: '用药记录', desc: '查看打卡记录、漏服提醒' },
+      { icon: '🔔', title: '复查提醒', desc: '同步接收复查通知' },
+      { icon: '🚨', title: '紧急告警', desc: '严重不良反应时紧急通知' }
+    ];
+    const systemSettings = [
+      { icon: '🔔', label: '消息通知' },
+      { icon: '🔒', label: '账号安全' },
+      { icon: '👨‍👩‍👧', label: '家属管理' },
+      { icon: '📍', label: '地址管理' },
+      { icon: '📜', label: '隐私协议' }
+    ];
 
     const tabs = [
       { key: 'home', label: '首页', icon: '🏠' },
@@ -652,6 +888,12 @@ createApp({
       sellingPoints, quickEntries, sampleStories, indications, stats,
       academicDocs, weekDays, medicationDays,
       serviceEntries, todoList, myEntries, settings, goToTab,
+      serviceSubPages, currentServiceSub,
+      mySubPages, currentMySub,
+      todayDoses, streakDays, streakStyle,
+      commonSymptoms, reminders,
+      chatMessages, chatQuick, logistics,
+      familyPerms, systemSettings
     };
   }
 }).mount('#app');
