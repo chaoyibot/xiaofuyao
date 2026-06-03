@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>小福药 · 氟尿嘧啶口服乳售后服务小程序 · 初版预览</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
+<script src="./data.js"></script>
+<style>
+  body { font-family: -apple-system, "PingFang SC", "Helvetica Neue", sans-serif; background: #f0f2f5; }
+  .phone-frame { width: 390px; height: 780px; background: white; border-radius: 40px; box-shadow: 0 20px 60px rgba(0,0,0,0.15); overflow: hidden; position: relative; border: 8px solid #1a1a1a; }
+  .phone-screen { width: 100%; height: 100%; overflow-y: auto; overflow-x: hidden; }
+  .phone-screen::-webkit-scrollbar { display: none; }
+  .tab-bar { position: absolute; bottom: 0; left: 0; right: 0; height: 70px; background: white; border-top: 1px solid #eee; display: flex; padding-bottom: 8px; }
+  .tab-item { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; font-size: 11px; cursor: pointer; transition: all 0.2s; }
+  .tab-icon { font-size: 22px; margin-bottom: 2px; }
+  .tab-active { color: var(--primary, #1565C0); font-weight: 600; }
+  .header { padding: 16px 20px; display: flex; align-items: center; justify-content: space-between; }
+  .safe-top { height: 44px; }
+  .status-bar { height: 24px; display: flex; align-items: center; justify-content: space-between; padding: 0 20px; font-size: 12px; font-weight: 600; }
+  .content-area { padding: 0 16px 100px 16px; }
+  .badge { display: inline-block; padding: 2px 8px; border-radius: 10px; font-size: 11px; font-weight: 500; }
+
+  /* ===== 风格 A：深蓝科技风 ===== */
+  .style-a { --primary: #0A2540; --primary-light: #1565C0; --accent: #1976D2; --bg-soft: #E3F2FD; }
+  .style-a .hero { background: linear-gradient(135deg, #0A2540 0%, #1565C0 100%); color: white; }
+  .style-a .card { background: white; border-radius: 16px; box-shadow: 0 4px 16px rgba(10,37,64,0.08); }
+  .style-a .btn-primary { background: #1565C0; color: white; }
+
+  /* ===== 风格 B：温暖治愈风 ===== */
+  .style-b { --primary: #FF7B54; --primary-light: #FFB26B; --accent: #FFD56B; --bg-soft: #FFF5EC; }
+  .style-b .hero { background: linear-gradient(135deg, #FFB26B 0%, #FF7B54 100%); color: white; }
+  .style-b .card { background: white; border-radius: 20px; box-shadow: 0 4px 16px rgba(255,123,84,0.10); }
+  .style-b .btn-primary { background: #FF7B54; color: white; }
+
+  /* ===== 风格 C：极简医学风 ===== */
+  .style-c { --primary: #2C3E50; --primary-light: #34495E; --accent: #16A085; --bg-soft: #ECF0F1; }
+  .style-c .hero { background: #2C3E50; color: white; }
+  .style-c .card { background: white; border-radius: 4px; box-shadow: 0 1px 3px rgba(0,0,0,0.08); border-left: 3px solid #16A085; }
+  .style-c .btn-primary { background: #2C3E50; color: white; }
+
+  /* ===== 风格 D：临床专业风 ===== */
+  .style-d { --primary: #1B4D3E; --primary-light: #2D6A4F; --accent: #40916C; --bg-soft: #D8F3DC; }
+  .style-d .hero { background: #1B4D3E; color: white; border-bottom: 3px solid #40916C; }
+  .style-d .card { background: white; border-radius: 6px; box-shadow: 0 2px 8px rgba(27,77,62,0.08); }
+  .style-d .btn-primary { background: #1B4D3E; color: white; }
+
+  /* ===== 风格 E：移动医疗风 ===== */
+  .style-e { --primary: #00BFA5; --primary-light: #1DE9B6; --accent: #00E5FF; --bg-soft: #E0F7FA; }
+  .style-e .hero { background: linear-gradient(135deg, #00BFA5 0%, #1DE9B6 100%); color: white; }
+  .style-e .card { background: white; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,191,165,0.10); }
+  .style-e .btn-primary { background: #00BFA5; color: white; }
+
+  .alert-warning { background: #FFF3E0; border-left: 3px solid #FF9800; padding: 12px; border-radius: 6px; font-size: 12px; color: #E65100; }
+  .alert-danger { background: #FFEBEE; border-left: 3px solid #F44336; padding: 12px; border-radius: 6px; font-size: 12px; color: #B71C1C; }
+  .alert-info { background: #E3F2FD; border-left: 3px solid #2196F3; padding: 12px; border-radius: 6px; font-size: 12px; color: #0D47A1; }
+
+  .calendar-day { width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; border-radius: 6px; font-size: 12px; }
+  .day-taken { background: var(--primary, #1565C0); color: white; font-weight: 600; }
+  .day-future { background: #f5f5f5; color: #999; }
+  .day-missed { background: #FFEBEE; color: #F44336; }
+
+  .nav-button { transition: transform 0.2s; cursor: pointer; }
+  .nav-button:active { transform: scale(0.95); }
+
+  .fade-enter-active, .fade-leave-active { transition: opacity 0.3s; }
+  .fade-enter-from, .fade-leave-to { opacity: 0; }
+
+  /* 风格选择器 */
+  .style-switcher { background: white; border-radius: 12px; padding: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); display: flex; gap: 4px; margin-bottom: 20px; }
+  .style-btn { padding: 8px 12px; border-radius: 8px; font-size: 12px; cursor: pointer; font-weight: 500; transition: all 0.2s; }
+  .style-btn-active { background: #0A2540; color: white; }
+</style>
+</head>
+<body class="p-8">
+<div id="app" class="max-w-7xl mx-auto">
+  <!-- 标题 -->
+  <div class="mb-6">
+    <h1 class="text-3xl font-bold text-gray-800 mb-2">🏥 小福药 · 初版预览</h1>
+    <p class="text-gray-600">氟尿嘧啶口服乳售后服务小程序 · 5 种设计风格 + 5 个核心页面 · 2026-06-03</p>
+  </div>
+
+  <!-- 风格切换器 -->
+  <div class="style-switcher w-fit">
+    <div v-for="(s, idx) in styles" :key="idx"
+         @click="currentStyle = idx"
+         :class="['style-btn', currentStyle === idx ? 'style-btn-active' : 'bg-gray-100 text-gray-700']">
+      {{ s.name }} · {{ s.label }}
+    </div>
+  </div>
+
+  <div class="flex flex-wrap gap-12 justify-center items-start">
+    <!-- 手机预览框 -->
+    <div class="flex flex-col items-center">
+      <p class="text-sm text-gray-500 mb-3">↓ 模拟手机预览（可点击切换）</p>
+      <div class="phone-frame">
+        <div class="phone-screen" :class="'style-' + ['a','b','c','d','e'][currentStyle]">
+          <!-- 状态栏 -->
+          <div class="status-bar">
+            <span>9:41</span>
+            <span>📶 📶 🔋</span>
+          </div>
+          <div class="safe-top"></div>
+
+          <!-- 主内容区 -->
+          <transition name="fade" mode="out-in">
+            <!-- 首页 -->
+            <div v-if="currentTab === 'home'" key="home" class="content-area">
+              <!-- 药品名片 Hero -->
+              <div class="hero rounded-b-3xl px-5 pt-2 pb-8 -mt-2">
+                <div class="flex justify-between items-center mb-4">
+                  <div>
+                    <div class="text-xs opacity-80">{{ styles[currentStyle].brand }}</div>
+                    <div class="text-lg font-bold">小福药</div>
+                  </div>
+                  <div class="text-2xl">🔔</div>
+                </div>
+                <div class="text-xs opacity-90 mb-1">本品为处方药</div>
+                <div class="text-2xl font-bold mb-1">氟尿嘧啶口服乳</div>
+                <div class="text-sm opacity-90 mb-3">5-Fluorouracil Oral Emulsion</div>
+                <div class="flex gap-2 flex-wrap">
+                  <span class="badge bg-white/20 text-white">📋 处方药</span>
+                  <span class="badge bg-white/20 text-white">🏥 医保乙类</span>
+                  <span class="badge bg-white/20 text-white">💊 口服化疗</span>
+                </div>
+              </div>
+
+              <!-- 5 大核心卖点 -->
+              <div class="card p-4 mt-4 -mx-1">
+                <div class="text-sm font-bold mb-3 text-gray-800">⭐ 五大核心优势</div>
+                <div class="grid grid-cols-5 gap-2">
+                  <div class="text-center" v-for="point in sellingPoints" :key="point.icon">
+                    <div class="text-2xl mb-1">{{ point.icon }}</div>
+                    <div class="text-xs text-gray-700">{{ point.label }}</div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- 快速入口 -->
+              <div class="card p-4 mt-3">
+                <div class="text-sm font-bold mb-3 text-gray-800">🚀 快速进入</div>
+                <div class="grid grid-cols-4 gap-3">
+                  <div v-for="entry in quickEntries" :key="entry.label" class="text-center nav-button" @click="goToTab(entry.tab)">
+                    <div class="text-2xl mb-1">{{ entry.icon }}</div>
+                    <div class="text-xs text-gray-700">{{ entry.label }}</div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- 患者故事 -->
+              <div class="mt-4">
+                <div class="flex justify-between items-center mb-3 px-1">
+                  <div class="text-sm font-bold text-gray-800">📖 真实患者故事</div>
+                  <div class="text-xs text-gray-500">查看更多 →</div>
+                </div>
+                <div v-for="(story, i) in sampleStories" :key="i" class="card p-3 mb-2">
+                  <div class="flex gap-3">
+                    <div class="w-16 h-16 rounded-lg flex items-center justify-center text-2xl flex-shrink-0" :style="{background: 'var(--bg-soft)'}">📖</div>
+                    <div class="flex-1 min-w-0">
+                      <div class="text-sm font-semibold text-gray-800 truncate">{{ story.title }}</div>
+                      <div class="text-xs text-gray-500 mt-1 line-clamp-2">{{ story.summary }}</div>
+                      <div class="flex gap-1 mt-1">
+                        <span v-for="tag in story.indications.slice(0, 2)" :key="tag" class="badge" :style="{background: 'var(--bg-soft)', color: 'var(--primary)'}">{{ tag }}</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- 风险提示 -->
+              <div class="alert-danger mt-4">
+                <div class="font-bold mb-1">⚠️ 风险提示</div>
+                <div>本品为处方药，可能引起骨髓抑制、消化道反应等，需在医生指导下使用。用药期间定期复查血常规、肝肾功能。</div>
+              </div>
+            </div>
+
+            <!-- 产品介绍页 -->
+            <div v-else-if="currentTab === 'product'" key="product" class="content-area">
+              <div class="header">
+                <div class="text-xl font-bold">📦 产品介绍</div>
+                <div class="text-sm" style="color: var(--primary)">⌕ 搜索</div>
+              </div>
+
+              <div class="card p-4 mb-3">
+                <div class="text-base font-bold text-gray-800 mb-2">氟尿嘧啶口服乳</div>
+                <div class="text-xs text-gray-500 mb-3">5-Fluorouracil Oral Emulsion</div>
+                <div class="grid grid-cols-2 gap-2 text-xs">
+                  <div class="bg-gray-50 p-2 rounded"><span class="text-gray-500">规格：</span>0.4g/支</div>
+                  <div class="bg-gray-50 p-2 rounded"><span class="text-gray-500">剂型：</span>口服乳剂</div>
+                  <div class="bg-gray-50 p-2 rounded"><span class="text-gray-500">用法：</span>口服</div>
+                  <div class="bg-gray-50 p-2 rounded"><span class="text-gray-500">贮藏：</span>避光密封</div>
+                </div>
+              </div>
+
+              <div class="card p-4 mb-3">
+                <div class="text-sm font-bold text-gray-800 mb-2">🎯 适应症</div>
+                <div class="flex gap-1 flex-wrap">
+                  <span v-for="ind in indications" :key="ind" class="badge" :style="{background: 'var(--bg-soft)', color: 'var(--primary)'}">{{ ind }}</span>
+                </div>
+              </div>
+
+              <div class="card p-4 mb-3">
+                <div class="text-sm font-bold text-gray-800 mb-3">💊 核心卖点</div>
+                <div v-for="(point, i) in sellingPoints" :key="i" class="flex gap-3 mb-3 last:mb-0">
+                  <div class="text-2xl">{{ point.icon }}</div>
+                  <div>
+                    <div class="text-sm font-semibold text-gray-800">{{ point.title }}</div>
+                    <div class="text-xs text-gray-500">{{ point.desc }}</div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="card p-4 mb-3">
+                <div class="text-sm font-bold text-gray-800 mb-3">📊 同类产品对比</div>
+                <table class="w-full text-xs">
+                  <thead>
+                    <tr class="text-left text-gray-500">
+                      <th class="py-1">产品</th>
+                      <th>剂型</th>
+                      <th>便利性</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr class="border-t"><td class="py-2 font-semibold" style="color: var(--primary)">氟尿嘧啶口服乳</td><td>口服乳剂</td><td>⭐⭐⭐⭐⭐</td></tr>
+                    <tr class="border-t"><td class="py-2">卡培他滨</td><td>片剂</td><td>⭐⭐⭐⭐</td></tr>
+                    <tr class="border-t"><td class="py-2">替吉奥</td><td>胶囊</td><td>⭐⭐⭐⭐</td></tr>
+                    <tr class="border-t"><td class="py-2">5-FU 静脉</td><td>注射</td><td>⭐⭐</td></tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <div class="alert-info mb-3">
+                <div class="font-bold mb-1">📋 用药提醒</div>
+                <div>请在医生指导下使用，本品为处方药，凭医师处方购买。</div>
+              </div>
+            </div>
+
+            <!-- 学术中心 -->
+            <div v-else-if="currentTab === 'academic'" key="academic" class="content-area">
+              <div class="header">
+                <div class="text-xl font-bold">🎓 学术中心</div>
+                <div class="text-sm" style="color: var(--primary)">📚 课件</div>
+              </div>
+
+              <div class="card p-3 mb-3 flex items-center gap-2">
+                <div class="text-gray-400">⌕</div>
+                <div class="text-sm text-gray-500">搜索文献、指南、病例...</div>
+              </div>
+
+              <div class="card p-3 mb-3">
+                <div class="text-sm font-bold text-gray-800 mb-2">📂 适应症分类</div>
+                <div class="flex gap-1 flex-wrap">
+                  <span class="badge cursor-pointer" style="background: var(--primary); color: white">全部</span>
+                  <span v-for="ind in indications" :key="ind" class="badge cursor-pointer" :style="{background: 'var(--bg-soft)', color: 'var(--primary)'}">{{ ind }}</span>
+                </div>
+              </div>
+
+              <div class="text-sm font-bold text-gray-800 mb-2 px-1">📑 推荐文献（{{ academicDocs.length }}）</div>
+              <div v-for="doc in academicDocs" :key="doc.id" class="card p-3 mb-2">
+                <div class="flex justify-between items-start mb-1">
+                  <div class="text-sm font-semibold text-gray-800 flex-1 pr-2">{{ doc.title }}</div>
+                  <span class="badge" style="background: var(--bg-soft); color: var(--primary)">{{ doc.theme }}</span>
+                </div>
+                <div class="text-xs text-gray-500 line-clamp-2">{{ doc.summary }}</div>
+                <div class="flex justify-between items-center mt-2 text-xs text-gray-400">
+                  <span>📅 2025 · 核心期刊</span>
+                  <span style="color: var(--primary)">查看详情 →</span>
+                </div>
+              </div>
+
+              <!-- 剂量计算器入口 -->
+              <div class="card p-4 mt-4" style="background: linear-gradient(135deg, var(--primary), var(--primary-light)); color: white">
+                <div class="text-base font-bold mb-1">🧮 BSA 剂量计算器</div>
+                <div class="text-xs opacity-90 mb-2">输入身高体重，自动计算体表面积与推荐剂量</div>
+                <button class="btn-primary px-4 py-2 rounded-lg text-xs font-semibold mt-1" style="background: white; color: var(--primary)">立即计算 →</button>
+              </div>
+
+              <div class="alert-info mt-3">
+                <div class="font-bold mb-1">📚 学术内容仅供医务人员参考</div>
+                <div>不作为临床决策唯一依据，具体用药方案请遵医嘱。</div>
+              </div>
+            </div>
+
+            <!-- 售后服务 -->
+            <div v-else-if="currentTab === 'service'" key="service" class="content-area">
+              <div class="header">
+                <div>
+                  <div class="text-xs text-gray-500">早上好 ☀️</div>
+                  <div class="text-lg font-bold">张女士</div>
+                </div>
+                <div class="text-2xl">👤</div>
+              </div>
+
+              <!-- 今日用药提醒 -->
+              <div class="card p-4 mb-3" style="background: linear-gradient(135deg, var(--primary), var(--primary-light)); color: white">
+                <div class="flex justify-between items-center">
+                  <div>
+                    <div class="text-xs opacity-90">今日用药</div>
+                    <div class="text-2xl font-bold">3 次</div>
+                    <div class="text-xs opacity-90 mt-1">下次服药：14:00</div>
+                  </div>
+                  <div class="text-4xl">💊</div>
+                </div>
+              </div>
+
+              <!-- 用药打卡日历 -->
+              <div class="card p-4 mb-3">
+                <div class="flex justify-between items-center mb-3">
+                  <div class="text-sm font-bold text-gray-800">📅 用药打卡 · 连续 12 天</div>
+                  <div class="text-xs" style="color: var(--primary)">查看记录 →</div>
+                </div>
+                <div class="grid grid-cols-7 gap-1">
+                  <div v-for="(day, i) in weekDays" :key="i" class="text-center text-xs text-gray-500 py-1">{{ day }}</div>
+                  <div v-for="(status, i) in medicationDays" :key="i" class="calendar-day"
+                       :class="{'day-taken': status === 'taken', 'day-future': status === 'future', 'day-missed': status === 'missed'}">
+                    {{ i + 1 }}
+                  </div>
+                </div>
+              </div>
+
+              <!-- 服务功能入口 -->
+              <div class="card p-4 mb-3">
+                <div class="text-sm font-bold text-gray-800 mb-3">🛠️ 售后服务中心</div>
+                <div class="grid grid-cols-4 gap-3">
+                  <div v-for="svc in serviceEntries" :key="svc.label" class="text-center">
+                    <div class="w-12 h-12 mx-auto rounded-full flex items-center justify-center text-xl mb-1" :style="{background: 'var(--bg-soft)'}">{{ svc.icon }}</div>
+                    <div class="text-xs text-gray-700">{{ svc.label }}</div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- 紧急求助按钮 -->
+              <div class="card p-4 mb-3" style="background: #FFEBEE; border-left: 4px solid #F44336">
+                <div class="flex items-center gap-3">
+                  <div class="text-3xl">🆘</div>
+                  <div class="flex-1">
+                    <div class="text-sm font-bold" style="color: #B71C1C">紧急求助</div>
+                    <div class="text-xs" style="color: #B71C1C">严重不良反应？立即接通医师</div>
+                  </div>
+                  <button class="px-4 py-2 rounded-lg text-white text-sm font-bold" style="background: #F44336">立即拨打</button>
+                </div>
+              </div>
+
+              <!-- 待办提醒 -->
+              <div class="card p-4">
+                <div class="text-sm font-bold text-gray-800 mb-3">🔔 待办提醒</div>
+                <div v-for="(todo, i) in todoList" :key="i" class="flex items-center gap-3 py-2 border-b last:border-0 border-gray-100">
+                  <div class="text-xl">{{ todo.icon }}</div>
+                  <div class="flex-1">
+                    <div class="text-sm text-gray-800">{{ todo.title }}</div>
+                    <div class="text-xs text-gray-500">{{ todo.time }}</div>
+                  </div>
+                  <div class="text-xs" style="color: var(--primary)">查看 →</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 我的 -->
+            <div v-else-if="currentTab === 'my'" key="my" class="content-area">
+              <div class="hero rounded-b-3xl px-5 py-6 -mt-2">
+                <div class="flex items-center gap-3">
+                  <div class="w-16 h-16 rounded-full bg-white/20 flex items-center justify-center text-3xl">👤</div>
+                  <div class="text-white">
+                    <div class="text-base font-bold">张女士</div>
+                    <div class="text-xs opacity-90">已用药 32 天 · 治疗中</div>
+                  </div>
+                </div>
+                <div class="grid grid-cols-3 gap-2 mt-4 text-center text-white">
+                  <div>
+                    <div class="text-xl font-bold">12</div>
+                    <div class="text-xs opacity-90">连续打卡</div>
+                  </div>
+                  <div>
+                    <div class="text-xl font-bold">3</div>
+                    <div class="text-xs opacity-90">复查提醒</div>
+                  </div>
+                  <div>
+                    <div class="text-xl font-bold">5</div>
+                    <div class="text-xs opacity-90">健康讲座</div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="card p-4 mt-4">
+                <div class="text-sm font-bold text-gray-800 mb-3">📋 我的服务</div>
+                <div class="grid grid-cols-4 gap-3">
+                  <div class="text-center" v-for="item in myEntries" :key="item.label">
+                    <div class="text-2xl mb-1">{{ item.icon }}</div>
+                    <div class="text-xs text-gray-700">{{ item.label }}</div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="card p-4 mt-3">
+                <div class="text-sm font-bold text-gray-800 mb-3">⚙️ 设置</div>
+                <div v-for="setting in settings" :key="setting.label" class="flex items-center justify-between py-3 border-b last:border-0 border-gray-100">
+                  <div class="flex items-center gap-2">
+                    <div>{{ setting.icon }}</div>
+                    <div class="text-sm text-gray-800">{{ setting.label }}</div>
+                  </div>
+                  <div class="text-gray-400">›</div>
+                </div>
+              </div>
+            </div>
+          </transition>
+
+          <!-- 底部 Tab Bar -->
+          <div class="tab-bar">
+            <div v-for="tab in tabs" :key="tab.key" class="tab-item" :class="{'tab-active': currentTab === tab.key}" @click="currentTab = tab.key">
+              <div class="tab-icon">{{ tab.icon }}</div>
+              <div>{{ tab.label }}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 右侧：设计稿说明 -->
+    <div class="flex-1 max-w-md">
+      <div class="bg-white rounded-2xl p-6 shadow-lg">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">🎨 当前风格：{{ styles[currentStyle].name }}</h2>
+        <p class="text-sm text-gray-600 mb-4">{{ styles[currentStyle].description }}</p>
+
+        <div class="mb-4">
+          <div class="text-sm font-bold text-gray-800 mb-2">🎯 适用场景</div>
+          <ul class="text-sm text-gray-600 space-y-1">
+            <li v-for="scene in styles[currentStyle].scenes" :key="scene">• {{ scene }}</li>
+          </ul>
+        </div>
+
+        <div class="mb-4">
+          <div class="text-sm font-bold text-gray-800 mb-2">🎨 主色</div>
+          <div class="flex gap-2">
+            <div v-for="color in styles[currentStyle].colors" :key="color.name" class="flex items-center gap-1">
+              <div class="w-6 h-6 rounded" :style="{background: color.value}"></div>
+              <span class="text-xs text-gray-600">{{ color.name }}</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="alert-info mt-4">
+          <div class="font-bold mb-1">💡 选型建议</div>
+          <div>东哥您可以点击上方 5 个 Tab 浏览每个风格的 5 个核心页面（首页/产品/学术/服务/我的），最后告诉我哪个风格最对您的胃口。</div>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-2xl p-6 shadow-lg mt-4">
+        <h3 class="text-base font-bold text-gray-800 mb-3">📊 内容资产</h3>
+        <div class="grid grid-cols-2 gap-3 text-sm">
+          <div class="bg-blue-50 p-3 rounded">
+            <div class="text-2xl font-bold text-blue-600">{{ stats.total_articles }}</div>
+            <div class="text-xs text-gray-600">篇软文</div>
+          </div>
+          <div class="bg-green-50 p-3 rounded">
+            <div class="text-2xl font-bold text-green-600">{{ (stats.total_words / 10000).toFixed(1) }}万</div>
+            <div class="text-xs text-gray-600">字内容</div>
+          </div>
+          <div class="bg-purple-50 p-3 rounded">
+            <div class="text-2xl font-bold text-purple-600">289</div>
+            <div class="text-xs text-gray-600">学术章节</div>
+          </div>
+          <div class="bg-orange-50 p-3 rounded">
+            <div class="text-2xl font-bold text-orange-600">177</div>
+            <div class="text-xs text-gray-600">违规词已过滤</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-gradient-to-r from-blue-50 to-cyan-50 rounded-2xl p-6 mt-4 border border-blue-100">
+        <h3 class="text-base font-bold text-gray-800 mb-2">📅 4 周冲刺路线</h3>
+        <div class="space-y-2 text-sm">
+          <div class="flex items-center gap-2">
+            <div class="w-6 h-6 rounded-full bg-green-500 text-white text-xs flex items-center justify-center">✓</div>
+            <div class="text-gray-700"><span class="font-bold">W0</span> · 项目结构 + 内容资产 + 合规审查（已 100% 完成）</div>
+          </div>
+          <div class="flex items-center gap-2">
+            <div class="w-6 h-6 rounded-full bg-yellow-500 text-white text-xs flex items-center justify-center">⚡</div>
+            <div class="text-gray-700"><span class="font-bold">W1</span> · 设计定稿 + 项目骨架 + 组件库</div>
+          </div>
+          <div class="flex items-center gap-2">
+            <div class="w-6 h-6 rounded-full bg-gray-300 text-white text-xs flex items-center justify-center">2</div>
+            <div class="text-gray-700"><span class="font-bold">W2</span> · 产品介绍 + 学术培训（11 页面 + 13 API）</div>
+          </div>
+          <div class="flex items-center gap-2">
+            <div class="w-6 h-6 rounded-full bg-gray-300 text-white text-xs flex items-center justify-center">3</div>
+            <div class="text-gray-700"><span class="font-bold">W3</span> · 售后服务（8 页面 + 12 API）</div>
+          </div>
+          <div class="flex items-center gap-2">
+            <div class="w-6 h-6 rounded-full bg-gray-300 text-white text-xs flex items-center justify-center">4</div>
+            <div class="text-gray-700"><span class="font-bold">W4</span> · 联调 + 测试 + 上线</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+const { createApp, ref, computed } = Vue;
+
+createApp({
+  setup() {
+    const styles = [
+      {
+        name: '风格 A · 深蓝科技风',
+        label: '深蓝科技',
+        brand: 'MEDICAL TECH',
+        description: '深蓝主色 + 科技蓝渐变，专业、可信、现代感强。适合医疗专业 IP。',
+        scenes: ['医疗器械/处方药', '临床专业医师群体', '专业医学内容平台'],
+        colors: [
+          { name: '主色', value: '#0A2540' },
+          { name: '辅色', value: '#1565C0' },
+          { name: '点缀', value: '#1976D2' },
+        ]
+      },
+      {
+        name: '风格 B · 温暖治愈风',
+        label: '温暖治愈',
+        brand: 'WARM CARE',
+        description: '暖橙 + 米白主色，关怀感强，温度感足。适合肿瘤患者及家属。',
+        scenes: ['居家治疗场景', '肿瘤患者/老年人', '女性用户群体'],
+        colors: [
+          { name: '主色', value: '#FF7B54' },
+          { name: '辅色', value: '#FFB26B' },
+          { name: '点缀', value: '#FFD56B' },
+        ]
+      },
+      {
+        name: '风格 C · 极简医学风',
+        label: '极简医学',
+        brand: 'MEDICAL MINIMAL',
+        description: '黑白灰 + 翠绿点缀，类似 NEJM、柳叶刀期刊风格。极简、严谨。',
+        scenes: ['学术研究机构', '医师学术培训', '专业期刊风格'],
+        colors: [
+          { name: '主色', value: '#2C3E50' },
+          { name: '辅色', value: '#34495E' },
+          { name: '点缀', value: '#16A085' },
+        ]
+      },
+      {
+        name: '风格 D · 临床专业风',
+        label: '临床专业',
+        brand: 'CLINICAL PRO',
+        description: '医学绿主色，沉稳专业，类似医生工作站的视觉。信任感最强。',
+        scenes: ['医院/诊所使用', '医师工作场景', '临床决策辅助'],
+        colors: [
+          { name: '主色', value: '#1B4D3E' },
+          { name: '辅色', value: '#2D6A4F' },
+          { name: '点缀', value: '#40916C' },
+        ]
+      },
+      {
+        name: '风格 E · 移动医疗风',
+        label: '移动医疗',
+        brand: 'MOBILE HEALTH',
+        description: '青绿主色 + 轻盈设计，类似平安好医生、丁香医生。现代化、移动优先。',
+        scenes: ['移动端用户体验', '年轻用户群体', '互联网医疗平台'],
+        colors: [
+          { name: '主色', value: '#00BFA5' },
+          { name: '辅色', value: '#1DE9B6' },
+          { name: '点缀', value: '#00E5FF' },
+        ]
+      },
+    ];
+
+    const currentStyle = ref(0);
+    const currentTab = ref('home');
+
+    const tabs = [
+      { key: 'home', label: '首页', icon: '🏠' },
+      { key: 'product', label: '产品', icon: '📦' },
+      { key: 'academic', label: '学术', icon: '🎓' },
+      { key: 'service', label: '服务', icon: '🛠️' },
+      { key: 'my', label: '我的', icon: '👤' },
+    ];
+
+    const sellingPoints = [
+      { icon: '🏠', label: '在家治疗', title: '居家治疗', desc: '告别频繁往返医院' },
+      { icon: '💊', label: '口服乳剂', title: '口服乳剂', desc: '生物利用度更高' },
+      { icon: '📋', label: '医保覆盖', title: '医保覆盖', desc: '多个省份已挂网' },
+      { icon: '🛡️', label: '安全可控', title: '安全可控', desc: '医生全程指导' },
+      { icon: '💰', label: '经济实惠', title: '经济实惠', desc: '省去住院费用' },
+    ];
+
+    const quickEntries = [
+      { icon: '📖', label: '患者故事', tab: 'home' },
+      { icon: '🧮', label: '剂量计算', tab: 'academic' },
+      { icon: '⏰', label: '用药提醒', tab: 'service' },
+      { icon: '🆘', label: '紧急求助', tab: 'service' },
+    ];
+
+    const sampleStories = window.DEMO_DATA?.sample_stories || [];
+    const indications = window.DEMO_DATA?.indications || [];
+    const stats = window.DEMO_DATA?.stats || { total_articles: 0, total_words: 0 };
+
+    const academicDocs = [
+      { id: 1, title: '氟尿嘧啶口服乳在结直肠癌辅助化疗中的临床应用', theme: '临床疗效', summary: '研究纳入328例II/III期结直肠癌患者，口服乳剂组在疗效和安全性方面均显示优势，3年DFS率达78.5%...' },
+      { id: 2, title: '口服化疗药物的生物利用度与药代动力学研究', theme: '药代动力学', summary: '本文系统综述了氟尿嘧啶口服乳的吸收、分布、代谢特点，相对生物利用度可达传统口服制剂的2-3倍...' },
+      { id: 3, title: '氟尿嘧啶类药物安全性管理专家共识（2025）', theme: '安全性', summary: '本共识针对氟尿嘧啶类药物的常见不良反应（骨髓抑制、消化道反应、手足综合征）提出了分级管理建议...' },
+      { id: 4, title: '胃癌围手术期化疗方案优化：含氟尿嘧啶口服乳方案', theme: '联合用药', summary: '对比分析了含氟尿嘧啶口服乳的SOX方案与标准方案在围手术期胃癌中的疗效与安全性...' },
+    ];
+
+    const weekDays = ['一', '二', '三', '四', '五', '六', '日'];
+    const medicationDays = ['taken','taken','missed','taken','taken','taken','taken','taken','taken','taken','taken','today','future','future'];
+
+    const serviceEntries = [
+      { icon: '💊', label: '用药打卡' },
+      { icon: '🔔', label: '复查提醒' },
+      { icon: '🚨', label: '不良反应' },
+      { icon: '📞', label: '联系医师' },
+      { icon: '📦', label: '物流查询' },
+      { icon: '📝', label: '健康档案' },
+      { icon: '🎁', label: '健康讲座' },
+      { icon: '👨‍👩‍👧', label: '家属账号' },
+    ];
+
+    const todoList = [
+      { icon: '🔬', title: '血常规复查', time: '明天 09:00' },
+      { icon: '🩺', title: '主治医师复诊', time: '7月8日 14:30' },
+      { icon: '💊', title: '下一周期药品配送', time: '7月10日 送达' },
+      { icon: '🎓', title: '在线健康讲座', time: '7月5日 19:00' },
+    ];
+
+    const myEntries = [
+      { icon: '📋', label: '电子药历' },
+      { icon: '👨‍👩‍👧', label: '家属账号' },
+      { icon: '📦', label: '我的订单' },
+      { icon: '🎓', label: '学习记录' },
+      { icon: '🎁', label: '我的福利' },
+      { icon: '📞', label: '专属顾问' },
+      { icon: '❓', label: '常见问题' },
+      { icon: '💬', label: '意见反馈' },
+    ];
+
+    const settings = [
+      { icon: '🔔', label: '消息通知' },
+      { icon: '🔒', label: '账号安全' },
+      { icon: '👨‍👩‍👧', label: '家属管理' },
+      { icon: '📍', label: '地址管理' },
+      { icon: '📜', label: '隐私协议' },
+      { icon: 'ℹ️', label: '关于小福药' },
+    ];
+
+    function goToTab(tab) { currentTab.value = tab; }
+
+    return {
+      styles, currentStyle, currentTab, tabs,
+      sellingPoints, quickEntries, sampleStories, indications, stats,
+      academicDocs, weekDays, medicationDays,
+      serviceEntries, todoList, myEntries, settings, goToTab,
+    };
+  }
+}).mount('#app');
+</script>
+</body>
+</html>
