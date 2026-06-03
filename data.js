@@ -1,4 +1,4 @@
-// 自动生成 - 不要手动编辑
+// 自动生成 - 包含 W2 全量数据 + 修复后药品基础信息（医保已取消）
 window.DEMO_DATA = {
   "sample_stories": [
     {
@@ -72,5 +72,43 @@ window.DEMO_DATA = {
   "stats": {
     "total_articles": 90,
     "total_words": 723807
+  },
+  "sellingPoints": [
+    {
+      "icon": "🏠",
+      "title": "居家治疗",
+      "description": "告别频繁往返医院"
+    },
+    {
+      "icon": "💊",
+      "title": "口服乳剂",
+      "description": "乳剂型制剂，服用方便"
+    },
+    {
+      "icon": "🛡️",
+      "title": "安全可控",
+      "description": "医生全程用药指导"
+    },
+    {
+      "icon": "📋",
+      "title": "品牌保障",
+      "description": "中和制药正规生产"
+    },
+    {
+      "icon": "💰",
+      "title": "经济实惠",
+      "description": "省去住院治疗费用"
+    }
+  ],
+  "product": {
+    "id": "fluorouracil-oral",
+    "name": "氟尿嘧啶口服乳",
+    "enName": "5-Fluorouracil Oral Emulsion",
+    "specification": "0.4g/支",
+    "dosageForm": "口服乳剂",
+    "manufacturer": "中和制药",
+    "usage": "详见药品说明书。请在医生指导下使用。",
+    "storage": "详见药品说明书",
+    "validPeriod": "详见药品说明书"
   }
 };
