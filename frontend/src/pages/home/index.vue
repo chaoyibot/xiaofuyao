@@ -13,10 +13,10 @@ import { getFeaturedStories } from '@/api/story'
 const banners = ref([])
 const sellingPoints = ref([
   { icon: '🏠', title: '居家治疗', desc: '告别频繁往返医院' },
-  { icon: '💊', title: '口服乳剂', desc: '生物利用度更高' },
-  { icon: '📋', title: '医保覆盖', desc: '多个省份已挂网' },
-  { icon: '🛡️', title: '安全可控', desc: '医生全程指导' },
-  { icon: '💰', title: '经济实惠', desc: '省去住院费用' }
+  { icon: '💊', title: '口服乳剂', desc: '乳剂型制剂，服用方便' },
+  { icon: '🛡️', title: '安全可控', desc: '医生全程用药指导' },
+  { icon: '📋', title: '品牌保障', desc: '中和制药正规生产' },
+  { icon: '💰', title: '经济实惠', desc: '省去住院治疗费用' }
 ])
 const featuredStories = ref([])
 const quickEntries = ref([

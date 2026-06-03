@@ -1,4 +1,4 @@
-import { get, post } from '@/utils/request'
+import { get } from '@/utils/request'
 
 const BASE = '/api/product'
 
@@ -23,9 +23,4 @@ export function getIndications() {
   return get(`${BASE}/indications`)
 }
 
-/**
- * 获取医保信息
- */
-export function getInsurance(province) {
-  return get(`${BASE}/insurance`, { province })
-}
+// 已删除：getInsurance（医保板块已取消）

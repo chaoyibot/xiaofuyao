@@ -30,8 +30,8 @@ function onIndicationChange(idx) {
           <view class="product-en">{{ product.enName }}</view>
           <view class="product-tags">
             <text class="tag">📋 处方药</text>
-            <text class="tag">🏥 医保乙类</text>
             <text class="tag">💊 口服化疗</text>
+            <text class="tag">🏛️ 中和制药</text>
           </view>
         </view>
       </view>
@@ -49,9 +49,17 @@ function onIndicationChange(idx) {
       </view>
     </view>
 
-    <!-- 药品基本信息 -->
+    <!-- 药品基本信息（仅展示可对外信息） -->
     <view class="card">
       <view class="card-title">📋 药品基本信息</view>
+      <view class="info-row">
+        <text class="info-label">通用名</text>
+        <text class="info-value">{{ product.name }}</text>
+      </view>
+      <view class="info-row">
+        <text class="info-label">英文名</text>
+        <text class="info-value">{{ product.enName }}</text>
+      </view>
       <view class="info-row">
         <text class="info-label">规格</text>
         <text class="info-value">{{ product.specification }}</text>
@@ -61,22 +69,15 @@ function onIndicationChange(idx) {
         <text class="info-value">{{ product.dosageForm }}</text>
       </view>
       <view class="info-row">
-        <text class="info-label">批准文号</text>
-        <text class="info-value">{{ product.approvalNumber }}</text>
-      </view>
-      <view class="info-row">
-        <text class="info-label">贮藏</text>
-        <text class="info-value">{{ product.storage }}</text>
-      </view>
-      <view class="info-row">
-        <text class="info-label">有效期</text>
-        <text class="info-value">{{ product.validPeriod }}</text>
+        <text class="info-label">生产厂家</text>
+        <text class="info-value">{{ product.manufacturer }}</text>
       </view>
     </view>
 
-    <!-- 适应症 -->
+    <!-- 适应症（仅作介绍，详细需查看说明书） -->
     <view class="card">
       <view class="card-title">🎯 适应症</view>
+      <view class="card-subtitle">本品适用于以下肿瘤的治疗。详细适应症以药品说明书为准。</view>
       <view class="indication-list">
         <view v-for="ind in indications" :key="ind.id" class="indication-item">
           <text class="indication-icon">{{ ind.icon }}</text>
@@ -88,32 +89,64 @@ function onIndicationChange(idx) {
       </view>
     </view>
 
-    <!-- 用法用量 -->
+    <!-- 用法用量：仅引导到说明书 -->
     <view class="card">
       <view class="card-title">💊 用法用量</view>
-      <view class="text-block">{{ product.usage }}</view>
+      <view class="redirect-to-spec">
+        <text class="redirect-icon">📖</text>
+        <view class="redirect-content">
+          <text class="redirect-text">本品为处方化疗药，具体用法用量因人而异，</text>
+          <text class="redirect-text"><text class="highlight">请仔细阅读说明书</text>，并严格遵医嘱使用。</text>
+        </view>
+      </view>
     </view>
 
-    <!-- 不良反应 -->
-    <view class="card">
-      <view class="card-title">⚠️ 不良反应</view>
-      <view class="text-block">{{ product.adverseReactions }}</view>
+    <!-- 重大风险提示（必须展示） -->
+    <view class="card risk-card">
+      <view class="card-title risk-title">⚠️ 重大风险提示</view>
+      <view class="risk-list">
+        <view v-for="alert in product.riskAlerts" :key="alert" class="risk-item">
+          <text class="risk-text">{{ alert }}</text>
+        </view>
+      </view>
     </view>
 
-    <!-- 注意事项 -->
-    <view class="card">
-      <view class="card-title">📌 注意事项</view>
-      <view class="text-block">{{ product.precautions }}</view>
+    <!-- 详细用药信息入口 -->
+    <view class="redirect-section">
+      <view class="redirect-title">📚 详细用药信息</view>
+      <view class="redirect-buttons">
+        <view class="redirect-btn" @click="onViewSpec">
+          <text class="btn-icon">📖</text>
+          <text class="btn-label">查看完整说明书</text>
+        </view>
+        <view class="redirect-btn" @click="onContactDoctor">
+          <text class="btn-icon">👨‍⚕️</text>
+          <text class="btn-label">咨询医师</text>
+        </view>
+      </view>
     </view>
 
-    <!-- 风险提示 -->
+    <!-- 底部风险提示 -->
     <MedicalAlert
       type="danger"
-      title="⚠️ 风险提示"
-      content="本品为处方药，请凭医师处方购买使用。用药前请仔细阅读说明书，并在医生指导下使用。"
+      title="⚠️ 重要提示"
+      content="本品为处方药，具体用药方案以药品说明书和主治医师意见为准。未经医师许可，请勿自行调整用药方案。"
     />
   </view>
 </template>
+
+<script>
+export default {
+  methods: {
+    onViewSpec() {
+      uni.showToast({ title: '说明书功能开发中', icon: 'none' })
+    },
+    onContactDoctor() {
+      uni.navigateTo({ url: '/pages/service/index' })
+    }
+  }
+}
+</script>
 
 <style lang="scss" scoped>
 @import "@/uni.scss";

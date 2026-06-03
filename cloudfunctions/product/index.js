@@ -14,8 +14,7 @@ exports.main = async (event, context) => {
         return await getProductDetail(db, params.id)
       case 'getIndications':
         return await getIndications(db)
-      case 'getInsurance':
-        return await getInsurance(db, params.province)
+      // 已删除：getInsurance（医保板块已取消）
       default:
         return { code: 400, message: '未知 action' }
     }
@@ -48,14 +47,6 @@ async function getProductDetail(db, id) {
 async function getIndications(db) {
   const res = await db.collection('indications')
     .orderBy('sort', 'asc')
-    .get()
-  return { code: 0, data: res.data }
-}
-
-async function getInsurance(db, province) {
-  const query = province ? { province } : {}
-  const res = await db.collection('insurance_records')
-    .where(query)
     .get()
   return { code: 0, data: res.data }
 }

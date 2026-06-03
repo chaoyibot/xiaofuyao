@@ -137,13 +137,9 @@ POST /api/product
 action: getIndications
 ```
 
-### 2.4 医保查询
+### 2.4 ~~医保查询~~（已取消）
 
-```http
-POST /api/product
-action: getInsurance
-params: { "province": "湖南" }  # 可选
-```
+> ⚠️ 2026-06-03 东哥指示：医保板块已取消，getInsurance 接口不再维护。
 
 ---
 

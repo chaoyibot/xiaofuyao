@@ -13,7 +13,6 @@
 | `products` | 药品信息 | 公开读 | < 100 |
 | `indications` | 适应症字典 | 公开读 | < 50 |
 | `product_banners` | 首页轮播 | 公开读 | < 20 |
-| `insurance_records` | 医保记录 | 公开读 | < 5000 |
 | `academic_documents` | 学术文献 | 公开读 | < 1000 |
 | `courses` | 培训课件 | 公开读 | < 500 |
 | `patient_stories` | 患者故事 | 公开读 | < 10000 |

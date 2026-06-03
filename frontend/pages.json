@@ -33,14 +33,6 @@
       }
     },
     {
-      "path": "pages/insurance/index",
-      "style": {
-        "navigationBarTitleText": "医保查询",
-        "navigationBarBackgroundColor": "#0A2540",
-        "navigationBarTextStyle": "white"
-      }
-    },
-    {
       "path": "pages/academic/index",
       "style": {
         "navigationBarTitleText": "学术中心",
