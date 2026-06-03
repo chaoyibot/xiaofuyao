@@ -1,0 +1,67 @@
+/**
+ * 小福药 · 全局主题变量（uni.scss）
+ * 风格：医疗专业风（深蓝 + 科技蓝）
+ * 来源：基于 demo 验证后的 5 种风格，**默认 A 风格**
+ */
+
+$uni-color-primary: #0A2540;
+$uni-color-primary-light: #1565C0;
+$uni-color-primary-lighter: #1976D2;
+$uni-color-primary-bg: #E3F2FD;
+
+$uni-color-success: #4CAF50;
+$uni-color-warning: #FF9800;
+$uni-color-danger: #F44336;
+$uni-color-info: #2196F3;
+
+$uni-text-color: #212121;
+$uni-text-color-secondary: #757575;
+$uni-text-color-grey: #999999;
+$uni-text-color-placeholder: #BDBDBD;
+$uni-text-color-inverse: #FFFFFF;
+
+$uni-bg-color: #FFFFFF;
+$uni-bg-color-grey: #FAFAFA;
+$uni-bg-color-hover: #F5F5F5;
+$uni-bg-color-mask: rgba(0, 0, 0, 0.4);
+
+$uni-border-color: #E0E0E0;
+$uni-divider-color: #EEEEEE;
+
+$uni-font-size-sm: 24rpx;
+$uni-font-size-base: 28rpx;
+$uni-font-size-lg: 32rpx;
+$uni-font-size-xl: 36rpx;
+$uni-font-size-xxl: 40rpx;
+
+$uni-spacing-row-sm: 10rpx;
+$uni-spacing-row-base: 20rpx;
+$uni-spacing-row-lg: 30rpx;
+
+$uni-spacing-col-sm: 8rpx;
+$uni-spacing-col-base: 16rpx;
+$uni-spacing-col-lg: 24rpx;
+
+$uni-border-radius-sm: 8rpx;
+$uni-border-radius-base: 16rpx;
+$uni-border-radius-lg: 24rpx;
+$uni-border-radius-circle: 50%;
+
+$uni-shadow-sm: 0 2rpx 8rpx rgba(10, 37, 64, 0.06);
+$uni-shadow-base: 0 4rpx 16rpx rgba(10, 37, 64, 0.08);
+$uni-shadow-lg: 0 8rpx 32rpx rgba(10, 37, 64, 0.12);
+
+/**
+ * 临床警示色（医疗专用）
+ */
+$medical-warning-bg: #FFF3E0;
+$medical-warning-text: #E65100;
+$medical-warning-border: #FF9800;
+
+$medical-danger-bg: #FFEBEE;
+$medical-danger-text: #B71C1C;
+$medical-danger-border: #F44336;
+
+$medical-info-bg: #E3F2FD;
+$medical-info-text: #0D47A1;
+$medical-info-border: #2196F3;
