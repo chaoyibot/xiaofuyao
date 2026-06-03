@@ -84,3 +84,7 @@ Thumbs.db
 # ===== 微信小程序 =====
 __wxapp__/
 .miniprogram/
+
+# 临时备份目录
+*_backup/
+*_backup
