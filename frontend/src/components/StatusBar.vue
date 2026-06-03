@@ -9,7 +9,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted, onUnmounted } from 'vue'
+import { ref, computed, onMounted, onUnmounted } from 'vue'
 
 const props = defineProps({
   theme: { type: String, default: 'light', validator: v => ['light', 'dark'].includes(v) }
@@ -37,8 +37,6 @@ onUnmounted(() => {
 const statusBarStyle = computed(() => ({
   color: props.theme === 'dark' ? '#FFFFFF' : '#212121'
 }))
-
-import { computed } from 'vue'
 </script>
 
 <style lang="scss" scoped>

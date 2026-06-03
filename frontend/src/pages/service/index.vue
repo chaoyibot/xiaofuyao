@@ -73,7 +73,7 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 import AppHeader from '@/components/AppHeader.vue'
 import EmergencyButton from '@/components/EmergencyButton.vue'
 import MedicalAlert from '@/components/MedicalAlert.vue'

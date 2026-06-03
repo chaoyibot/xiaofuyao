@@ -15,6 +15,15 @@ onMounted(() => {
 function onIndicationChange(idx) {
   currentIndication.value = idx
 }
+
+// 修复：把原 Options API 的方法合并到 setup 块（之前是双 script 块导致点击无反应）
+function onViewSpec() {
+  uni.showToast({ title: '说明书功能开发中', icon: 'none' })
+}
+
+function onContactDoctor() {
+  uni.navigateTo({ url: '/pages/service/index' })
+}
 </script>
 
 <template>
@@ -134,19 +143,6 @@ function onIndicationChange(idx) {
     />
   </view>
 </template>
-
-<script>
-export default {
-  methods: {
-    onViewSpec() {
-      uni.showToast({ title: '说明书功能开发中', icon: 'none' })
-    },
-    onContactDoctor() {
-      uni.navigateTo({ url: '/pages/service/index' })
-    }
-  }
-}
-</script>
 
 <style lang="scss" scoped>
 @import "@/uni.scss";

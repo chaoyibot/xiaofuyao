@@ -36,7 +36,7 @@
         </picker>
       </view>
 
-      <button class="calc-btn" @click="onCalculate" :disabled="!canCalc">
+      <button class="calc-btn" hover-class="calc-btn--hover" @click="onCalculate">
         立即计算
       </button>
     </view>
@@ -83,6 +83,12 @@ function onIndicationChange(e) {
 }
 
 function onCalculate() {
+  // 前置校验（不再用 :disabled，给用户 toast 反馈）
+  if (!canCalc.value) {
+    uni.showToast({ title: '请填写身高、体重', icon: 'none', duration: 2000 })
+    return
+  }
+
   const h = parseFloat(form.value.height)
   const w = parseFloat(form.value.weight)
 
@@ -175,6 +181,11 @@ function onCalculate() {
   border-radius: $uni-border-radius-sm;
   margin-top: 16rpx;
   border: none;
+}
+
+.calc-btn--hover {
+  background: $uni-color-primary;
+  opacity: 0.9;
 }
 
 .calc-btn[disabled] {
