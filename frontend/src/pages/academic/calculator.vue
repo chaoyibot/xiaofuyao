@@ -46,6 +46,12 @@ const warnings = computed(() => {
 })
 
 function onCalculate() {
+  // 前置校验（不再用 :disabled，给用户 toast 反馈）
+  if (!canCalc.value) {
+    uni.showToast({ title: '请填写身高、体重、年龄', icon: 'none', duration: 2000 })
+    return
+  }
+
   let dose = doseMap[input.value.indication] || 600
   if (input.value.performanceStatus >= 2) dose *= 0.75
   if (parseInt(input.value.age) >= 75) dose *= 0.8
@@ -61,6 +67,9 @@ function onCalculate() {
     days14: (totalMg * 14).toFixed(0),
     days28: (totalMg * 28).toFixed(0)
   }
+
+  // 计算成功 toast
+  uni.showToast({ title: '计算完成', icon: 'success', duration: 1200 })
 }
 
 function onReset() {
@@ -124,7 +133,7 @@ function onReset() {
 
       <view class="button-group">
         <button class="btn-secondary" @click="onReset">重置</button>
-        <button class="btn-primary" :disabled="!canCalc" @click="onCalculate">立即计算</button>
+        <button class="btn-primary" hover-class="btn-primary--hover" @click="onCalculate">立即计算</button>
       </view>
     </view>
 
@@ -228,6 +237,11 @@ function onReset() {
   font-size: 26rpx;
   color: $uni-text-color-secondary;
   transition: all 0.2s;
+  cursor: pointer;
+}
+
+.radio-item:hover {
+  opacity: 0.7;
 }
 
 .radio-active {
@@ -262,6 +276,11 @@ function onReset() {
 .btn-primary {
   background: $uni-color-primary-light;
   color: #FFFFFF;
+}
+
+.btn-primary--hover {
+  background: $uni-color-primary;
+  opacity: 0.9;
 }
 
 .btn-primary[disabled] {
