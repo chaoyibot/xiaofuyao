@@ -1,0 +1,399 @@
+{
+  "scan_time": "2026-06-03",
+  "total_files": 65,
+  "total_issues": 65,
+  "critical_count": 28,
+  "warning_count": 37,
+  "issues": [
+    {
+      "type": "禁止词",
+      "level": "❌ 严重",
+      "word": "根治",
+      "file": "C:\\Users\\surface\\Desktop\\知识库\\氟尿嘧啶\\小程序项目\\小福药\\content\\学术资料\\学术资料摘要.md"
+    },
+    {
+      "type": "缺少用药提醒",
+      "level": "⚠️ 警告",
+      "missing": "请在医生指导下使用 或 请遵医嘱",
+      "file": "C:\\Users\\surface\\Desktop\\知识库\\氟尿嘧啶\\小程序项目\\小福药\\content\\学术资料\\学术资料摘要.md"
+    },
+    {
+      "type": "缺少处方提示",
+      "level": "⚠️ 警告",
+      "missing": "处方药 或 凭医师处方",
+      "file": "C:\\Users\\surface\\Desktop\\知识库\\氟尿嘧啶\\小程序项目\\小福药\\content\\学术资料\\学术资料摘要.md"
+    },
+    {
+      "type": "禁止词",
+      "level": "❌ 严重",
+      "word": "治愈",
+      "file": "C:\\Users\\surface\\Desktop\\知识库\\氟尿嘧啶\\小程序项目\\小福药\\content\\学术资料\\academic_kb.json"
+    },
+    {
+      "type": "禁止词",
+      "level": "❌ 严重",
+      "word": "根治",
+      "file": "C:\\Users\\surface\\Desktop\\知识库\\氟尿嘧啶\\小程序项目\\小福药\\content\\学术资料\\academic_kb.json"
+    },
+    {
+      "type": "禁止词",
+      "level": "❌ 严重",
+      "word": "最好",
+      "file": "C:\\Users\\surface\\Desktop\\知识库\\氟尿嘧啶\\小程序项目\\小福药\\content\\学术资料\\academic_kb.json"
+    },
+    {
+      "type": "禁止词",
+      "level": "❌ 严重",
+      "word": "第一",
+      "file": "C:\\Users\\surface\\Desktop\\知识库\\氟尿嘧啶\\小程序项目\\小福药\\content\\学术资料\\academic_kb.json"
+    },
+    {
+      "type": "缺少用药提醒",
+      "level": "⚠️ 警告",
+      "missing": "请在医生指导下使用 或 请遵医嘱",
+      "file": "C:\\Users\\surface\\Desktop\\知识库\\氟尿嘧啶\\小程序项目\\小福药\\content\\学术资料\\academic_kb.json"
+    },
+    {
+      "type": "缺少处方提示",
+      "level": "⚠️ 警告",
+      "missing": "处方药 或 凭医师处方",
+      "file": "C:\\Users\\surface\\Desktop\\知识库\\氟尿嘧啶\\小程序项目\\小福药\\content\\学术资料\\academic_kb.json"
+    },
+    {
+      "type": "缺少用药提醒",
+      "level": "⚠️ 警告",
+      "missing": "请在医生指导下使用 或 请遵医嘱",
+      "file": "C:\\Users\\surface\\Desktop\\知识库\\氟尿嘧啶\\小程序项目\\小福药\\content\\学术资料\\key_findings.json"
+    },
+    {
+      "type": "缺少处方提示",
+      "level": "⚠️ 警告",
+      "missing": "处方药 或 凭医师处方",
+      "file": "C:\\Users\\surface\\Desktop\\知识库\\氟尿嘧啶\\小程序项目\\小福药\\content\\学术资料\\key_findings.json"
+    },
+    {
+      "type": "缺少不良反应",
+      "level": "⚠️ 警告",
+      "missing": "不良反应 或 副作用",
+      "file": "C:\\Users\\surface\\Desktop\\知识库\\氟尿嘧啶\\小程序项目\\小福药\\content\\学术资料\\key_findings.json"
+    },
+    {
+      "type": "禁止词",
+      "level": "❌ 严重",
+      "word": "根治",
+      "file": "C:\\Users\\surface\\Desktop\\知识库\\氟尿嘧啶\\小程序项目\\小福药\\content\\学术资料\\theme_临床疗效.json"
+    },
+    {
+      "type": "禁止词",
+      "level": "❌ 严重",
+      "word": "第一",
+      "file": "C:\\Users\\surface\\Desktop\\知识库\\氟尿嘧啶\\小程序项目\\小福药\\content\\学术资料\\theme_临床疗效.json"
+    },
+    {
+      "type": "缺少用药提醒",
+      "level": "⚠️ 警告",
+      "missing": "请在医生指导下使用 或 请遵医嘱",
+      "file": "C:\\Users\\surface\\Desktop\\知识库\\氟尿嘧啶\\小程序项目\\小福药\\content\\学术资料\\theme_临床疗效.json"
+    },
+    {
+      "type": "缺少处方提示",
+      "level": "⚠️ 警告",
+      "missing": "处方药 或 凭医师处方",
+      "file": "C:\\Users\\surface\\Desktop\\知识库\\氟尿嘧啶\\小程序项目\\小福药\\content\\学术资料\\theme_临床疗效.json"
+    },
+    {
+      "type": "禁止词",
+      "level": "❌ 严重",
+      "word": "根治",
+      "file": "C:\\Users\\surface\\Desktop\\知识库\\氟尿嘧啶\\小程序项目\\小福药\\content\\学术资料\\theme_乳剂优势.json"
+    },
+    {
+      "type": "禁止词",
+      "level": "❌ 严重",
+      "word": "最好",
+      "file": "C:\\Users\\surface\\Desktop\\知识库\\氟尿嘧啶\\小程序项目\\小福药\\content\\学术资料\\theme_乳剂优势.json"
+    },
+    {
+      "type": "禁止词",
+      "level": "❌ 严重",
+      "word": "第一",
+      "file": "C:\\Users\\surface\\Desktop\\知识库\\氟尿嘧啶\\小程序项目\\小福药\\content\\学术资料\\theme_乳剂优势.json"
+    },
+    {
+      "type": "缺少用药提醒",
+      "level": "⚠️ 警告",
+      "missing": "请在医生指导下使用 或 请遵医嘱",
+      "file": "C:\\Users\\surface\\Desktop\\知识库\\氟尿嘧啶\\小程序项目\\小福药\\content\\学术资料\\theme_乳剂优势.json"
+    },
+    {
+      "type": "缺少处方提示",
+      "level": "⚠️ 警告",
+      "missing": "处方药 或 凭医师处方",
+      "file": "C:\\Users\\surface\\Desktop\\知识库\\氟尿嘧啶\\小程序项目\\小福药\\content\\学术资料\\theme_乳剂优势.json"
+    },
+    {
+      "type": "禁止词",
+      "level": "❌ 严重",
+      "word": "第一",
+      "file": "C:\\Users\\surface\\Desktop\\知识库\\氟尿嘧啶\\小程序项目\\小福药\\content\\学术资料\\theme_安全性.json"
+    },
+    {
+      "type": "缺少用药提醒",
+      "level": "⚠️ 警告",
+      "missing": "请在医生指导下使用 或 请遵医嘱",
+      "file": "C:\\Users\\surface\\Desktop\\知识库\\氟尿嘧啶\\小程序项目\\小福药\\content\\学术资料\\theme_安全性.json"
+    },
+    {
+      "type": "缺少处方提示",
+      "level": "⚠️ 警告",
+      "missing": "处方药 或 凭医师处方",
+      "file": "C:\\Users\\surface\\Desktop\\知识库\\氟尿嘧啶\\小程序项目\\小福药\\content\\学术资料\\theme_安全性.json"
+    },
+    {
+      "type": "禁止词",
+      "level": "❌ 严重",
+      "word": "治愈",
+      "file": "C:\\Users\\surface\\Desktop\\知识库\\氟尿嘧啶\\小程序项目\\小福药\\content\\学术资料\\theme_综合.json"
+    },
+    {
+      "type": "禁止词",
+      "level": "❌ 严重",
+      "word": "根治",
+      "file": "C:\\Users\\surface\\Desktop\\知识库\\氟尿嘧啶\\小程序项目\\小福药\\content\\学术资料\\theme_综合.json"
+    },
+    {
+      "type": "禁止词",
+      "level": "❌ 严重",
+      "word": "最好",
+      "file": "C:\\Users\\surface\\Desktop\\知识库\\氟尿嘧啶\\小程序项目\\小福药\\content\\学术资料\\theme_综合.json"
+    },
+    {
+      "type": "禁止词",
+      "level": "❌ 严重",
+      "word": "第一",
+      "file": "C:\\Users\\surface\\Desktop\\知识库\\氟尿嘧啶\\小程序项目\\小福药\\content\\学术资料\\theme_综合.json"
+    },
+    {
+      "type": "缺少用药提醒",
+      "level": "⚠️ 警告",
+      "missing": "请在医生指导下使用 或 请遵医嘱",
+      "file": "C:\\Users\\surface\\Desktop\\知识库\\氟尿嘧啶\\小程序项目\\小福药\\content\\学术资料\\theme_综合.json"
+    },
+    {
+      "type": "缺少处方提示",
+      "level": "⚠️ 警告",
+      "missing": "处方药 或 凭医师处方",
+      "file": "C:\\Users\\surface\\Desktop\\知识库\\氟尿嘧啶\\小程序项目\\小福药\\content\\学术资料\\theme_综合.json"
+    },
+    {
+      "type": "禁止词",
+      "level": "❌ 严重",
+      "word": "第一",
+      "file": "C:\\Users\\surface\\Desktop\\知识库\\氟尿嘧啶\\小程序项目\\小福药\\content\\学术资料\\theme_联合用药.json"
+    },
+    {
+      "type": "缺少用药提醒",
+      "level": "⚠️ 警告",
+      "missing": "请在医生指导下使用 或 请遵医嘱",
+      "file": "C:\\Users\\surface\\Desktop\\知识库\\氟尿嘧啶\\小程序项目\\小福药\\content\\学术资料\\theme_联合用药.json"
+    },
+    {
+      "type": "缺少处方提示",
+      "level": "⚠️ 警告",
+      "missing": "处方药 或 凭医师处方",
+      "file": "C:\\Users\\surface\\Desktop\\知识库\\氟尿嘧啶\\小程序项目\\小福药\\content\\学术资料\\theme_联合用药.json"
+    },
+    {
+      "type": "禁止词",
+      "level": "❌ 严重",
+      "word": "第一",
+      "file": "C:\\Users\\surface\\Desktop\\知识库\\氟尿嘧啶\\小程序项目\\小福药\\content\\学术资料\\theme_药代动力学.json"
+    },
+    {
+      "type": "缺少用药提醒",
+      "level": "⚠️ 警告",
+      "missing": "请在医生指导下使用 或 请遵医嘱",
+      "file": "C:\\Users\\surface\\Desktop\\知识库\\氟尿嘧啶\\小程序项目\\小福药\\content\\学术资料\\theme_药代动力学.json"
+    },
+    {
+      "type": "缺少处方提示",
+      "level": "⚠️ 警告",
+      "missing": "处方药 或 凭医师处方",
+      "file": "C:\\Users\\surface\\Desktop\\知识库\\氟尿嘧啶\\小程序项目\\小福药\\content\\学术资料\\theme_药代动力学.json"
+    },
+    {
+      "type": "禁止词",
+      "level": "❌ 严重",
+      "word": "治愈",
+      "file": "C:\\Users\\surface\\Desktop\\知识库\\氟尿嘧啶\\小程序项目\\小福药\\content\\学术资料\\theme_适应症.json"
+    },
+    {
+      "type": "禁止词",
+      "level": "❌ 严重",
+      "word": "根治",
+      "file": "C:\\Users\\surface\\Desktop\\知识库\\氟尿嘧啶\\小程序项目\\小福药\\content\\学术资料\\theme_适应症.json"
+    },
+    {
+      "type": "禁止词",
+      "level": "❌ 严重",
+      "word": "第一",
+      "file": "C:\\Users\\surface\\Desktop\\知识库\\氟尿嘧啶\\小程序项目\\小福药\\content\\学术资料\\theme_适应症.json"
+    },
+    {
+      "type": "缺少用药提醒",
+      "level": "⚠️ 警告",
+      "missing": "请在医生指导下使用 或 请遵医嘱",
+      "file": "C:\\Users\\surface\\Desktop\\知识库\\氟尿嘧啶\\小程序项目\\小福药\\content\\学术资料\\theme_适应症.json"
+    },
+    {
+      "type": "缺少处方提示",
+      "level": "⚠️ 警告",
+      "missing": "处方药 或 凭医师处方",
+      "file": "C:\\Users\\surface\\Desktop\\知识库\\氟尿嘧啶\\小程序项目\\小福药\\content\\学术资料\\theme_适应症.json"
+    },
+    {
+      "type": "禁止词",
+      "level": "❌ 严重",
+      "word": "第一",
+      "file": "C:\\Users\\surface\\Desktop\\知识库\\氟尿嘧啶\\小程序项目\\小福药\\content\\软文结构化\\all_articles.json"
+    },
+    {
+      "type": "缺少用药提醒",
+      "level": "⚠️ 警告",
+      "missing": "请在医生指导下使用 或 请遵医嘱",
+      "file": "C:\\Users\\surface\\Desktop\\知识库\\氟尿嘧啶\\小程序项目\\小福药\\content\\软文结构化\\all_articles.json"
+    },
+    {
+      "type": "缺少处方提示",
+      "level": "⚠️ 警告",
+      "missing": "处方药 或 凭医师处方",
+      "file": "C:\\Users\\surface\\Desktop\\知识库\\氟尿嘧啶\\小程序项目\\小福药\\content\\软文结构化\\all_articles.json"
+    },
+    {
+      "type": "禁止词",
+      "level": "❌ 严重",
+      "word": "第一",
+      "file": "C:\\Users\\surface\\Desktop\\知识库\\氟尿嘧啶\\小程序项目\\小福药\\content\\软文结构化\\category_乳腺癌.json"
+    },
+    {
+      "type": "缺少用药提醒",
+      "level": "⚠️ 警告",
+      "missing": "请在医生指导下使用 或 请遵医嘱",
+      "file": "C:\\Users\\surface\\Desktop\\知识库\\氟尿嘧啶\\小程序项目\\小福药\\content\\软文结构化\\category_乳腺癌.json"
+    },
+    {
+      "type": "缺少处方提示",
+      "level": "⚠️ 警告",
+      "missing": "处方药 或 凭医师处方",
+      "file": "C:\\Users\\surface\\Desktop\\知识库\\氟尿嘧啶\\小程序项目\\小福药\\content\\软文结构化\\category_乳腺癌.json"
+    },
+    {
+      "type": "禁止词",
+      "level": "❌ 严重",
+      "word": "第一",
+      "file": "C:\\Users\\surface\\Desktop\\知识库\\氟尿嘧啶\\小程序项目\\小福药\\content\\软文结构化\\category_头颈肿瘤.json"
+    },
+    {
+      "type": "缺少用药提醒",
+      "level": "⚠️ 警告",
+      "missing": "请在医生指导下使用 或 请遵医嘱",
+      "file": "C:\\Users\\surface\\Desktop\\知识库\\氟尿嘧啶\\小程序项目\\小福药\\content\\软文结构化\\category_头颈肿瘤.json"
+    },
+    {
+      "type": "缺少处方提示",
+      "level": "⚠️ 警告",
+      "missing": "处方药 或 凭医师处方",
+      "file": "C:\\Users\\surface\\Desktop\\知识库\\氟尿嘧啶\\小程序项目\\小福药\\content\\软文结构化\\category_头颈肿瘤.json"
+    },
+    {
+      "type": "禁止词",
+      "level": "❌ 严重",
+      "word": "第一",
+      "file": "C:\\Users\\surface\\Desktop\\知识库\\氟尿嘧啶\\小程序项目\\小福药\\content\\软文结构化\\category_结直肠癌.json"
+    },
+    {
+      "type": "缺少用药提醒",
+      "level": "⚠️ 警告",
+      "missing": "请在医生指导下使用 或 请遵医嘱",
+      "file": "C:\\Users\\surface\\Desktop\\知识库\\氟尿嘧啶\\小程序项目\\小福药\\content\\软文结构化\\category_结直肠癌.json"
+    },
+    {
+      "type": "缺少处方提示",
+      "level": "⚠️ 警告",
+      "missing": "处方药 或 凭医师处方",
+      "file": "C:\\Users\\surface\\Desktop\\知识库\\氟尿嘧啶\\小程序项目\\小福药\\content\\软文结构化\\category_结直肠癌.json"
+    },
+    {
+      "type": "禁止词",
+      "level": "❌ 严重",
+      "word": "第一",
+      "file": "C:\\Users\\surface\\Desktop\\知识库\\氟尿嘧啶\\小程序项目\\小福药\\content\\软文结构化\\category_肝癌.json"
+    },
+    {
+      "type": "缺少用药提醒",
+      "level": "⚠️ 警告",
+      "missing": "请在医生指导下使用 或 请遵医嘱",
+      "file": "C:\\Users\\surface\\Desktop\\知识库\\氟尿嘧啶\\小程序项目\\小福药\\content\\软文结构化\\category_肝癌.json"
+    },
+    {
+      "type": "缺少处方提示",
+      "level": "⚠️ 警告",
+      "missing": "处方药 或 凭医师处方",
+      "file": "C:\\Users\\surface\\Desktop\\知识库\\氟尿嘧啶\\小程序项目\\小福药\\content\\软文结构化\\category_肝癌.json"
+    },
+    {
+      "type": "禁止词",
+      "level": "❌ 严重",
+      "word": "第一",
+      "file": "C:\\Users\\surface\\Desktop\\知识库\\氟尿嘧啶\\小程序项目\\小福药\\content\\软文结构化\\category_胃癌.json"
+    },
+    {
+      "type": "缺少用药提醒",
+      "level": "⚠️ 警告",
+      "missing": "请在医生指导下使用 或 请遵医嘱",
+      "file": "C:\\Users\\surface\\Desktop\\知识库\\氟尿嘧啶\\小程序项目\\小福药\\content\\软文结构化\\category_胃癌.json"
+    },
+    {
+      "type": "缺少处方提示",
+      "level": "⚠️ 警告",
+      "missing": "处方药 或 凭医师处方",
+      "file": "C:\\Users\\surface\\Desktop\\知识库\\氟尿嘧啶\\小程序项目\\小福药\\content\\软文结构化\\category_胃癌.json"
+    },
+    {
+      "type": "禁止词",
+      "level": "❌ 严重",
+      "word": "第一",
+      "file": "C:\\Users\\surface\\Desktop\\知识库\\氟尿嘧啶\\小程序项目\\小福药\\content\\软文结构化\\category_胰腺癌.json"
+    },
+    {
+      "type": "缺少用药提醒",
+      "level": "⚠️ 警告",
+      "missing": "请在医生指导下使用 或 请遵医嘱",
+      "file": "C:\\Users\\surface\\Desktop\\知识库\\氟尿嘧啶\\小程序项目\\小福药\\content\\软文结构化\\category_胰腺癌.json"
+    },
+    {
+      "type": "缺少处方提示",
+      "level": "⚠️ 警告",
+      "missing": "处方药 或 凭医师处方",
+      "file": "C:\\Users\\surface\\Desktop\\知识库\\氟尿嘧啶\\小程序项目\\小福药\\content\\软文结构化\\category_胰腺癌.json"
+    },
+    {
+      "type": "禁止词",
+      "level": "❌ 严重",
+      "word": "第一",
+      "file": "C:\\Users\\surface\\Desktop\\知识库\\氟尿嘧啶\\小程序项目\\小福药\\content\\软文结构化\\category_通用.json"
+    },
+    {
+      "type": "缺少用药提醒",
+      "level": "⚠️ 警告",
+      "missing": "请在医生指导下使用 或 请遵医嘱",
+      "file": "C:\\Users\\surface\\Desktop\\知识库\\氟尿嘧啶\\小程序项目\\小福药\\content\\软文结构化\\category_通用.json"
+    },
+    {
+      "type": "缺少处方提示",
+      "level": "⚠️ 警告",
+      "missing": "处方药 或 凭医师处方",
+      "file": "C:\\Users\\surface\\Desktop\\知识库\\氟尿嘧啶\\小程序项目\\小福药\\content\\软文结构化\\category_通用.json"
+    }
+  ]
+}
