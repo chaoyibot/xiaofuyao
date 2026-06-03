@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="theme-color" content="#0A2540">
+<title>小福药 - 氟尿嘧啶口服乳售后</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+body { font-family: -apple-system, "PingFang SC", "Helvetica Neue", sans-serif; background: #FAFAFA; color: #212121; max-width: 480px; margin: 0 auto; min-height: 100vh; position: relative; padding-bottom: 120px; }
+a { text-decoration: none; color: inherit; }
+button { border: none; background: none; cursor: pointer; font-family: inherit; }
+
+/* 顶部 */
+.app-header { background: linear-gradient(135deg, #0A2540 0%, #1565C0 100%); color: #fff; padding: 56px 24px 24px; position: sticky; top: 0; z-index: 100; }
+.app-header h1 { font-size: 22px; font-weight: 600; margin-bottom: 4px; }
+.app-header p { font-size: 13px; opacity: 0.9; }
+
+/* 卡片 */
+.card { background: #fff; margin: 16px; padding: 20px; border-radius: 16px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
+.card-title { font-size: 16px; font-weight: 600; color: #0A2540; margin-bottom: 16px; display: flex; align-items: center; gap: 8px; }
+
+/* 紧急按钮 */
+.emergency-btn { position: fixed; bottom: 80px; right: 20px; width: 60px; height: 60px; background: #F44336; color: #fff; border-radius: 50%; box-shadow: 0 4px 12px rgba(244, 67, 54, 0.4); display: flex; align-items: center; justify-content: center; font-size: 24px; z-index: 99; animation: pulse 1.5s infinite; }
+@keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.05); } }
+
+/* 底部 Tab */
+.tabbar { position: fixed; bottom: 0; left: 0; right: 0; max-width: 480px; margin: 0 auto; background: #fff; border-top: 1px solid #eee; display: flex; height: 60px; z-index: 98; }
+.tab-item { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; font-size: 11px; color: #999; gap: 2px; }
+.tab-item.active { color: #0A2540; }
+.tab-item .icon { font-size: 22px; }
+
+/* Hero */
+.hero { background: linear-gradient(135deg, #0A2540 0%, #1565C0 100%); padding: 32px 24px 40px; color: #fff; }
+.hero-content { display: flex; align-items: center; }
+.hero-emoji { font-size: 64px; margin-right: 20px; }
+.hero-name { font-size: 24px; font-weight: 600; }
+.hero-en { font-size: 13px; opacity: 0.85; margin-top: 4px; }
+.hero-tags { display: flex; gap: 8px; margin-top: 12px; flex-wrap: wrap; }
+.tag { font-size: 11px; padding: 3px 10px; background: rgba(255,255,255,0.2); border-radius: 10px; }
+
+/* 卖点 */
+.selling-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+.selling-item { background: #E3F2FD; padding: 16px 12px; border-radius: 12px; text-align: center; }
+.selling-icon { font-size: 28px; display: block; margin-bottom: 6px; }
+.selling-title { font-size: 14px; font-weight: 600; color: #0A2540; }
+.selling-desc { font-size: 11px; color: #666; margin-top: 2px; }
+
+/* 服务入口 */
+.entry-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+.entry-item { text-align: center; padding: 12px 4px; background: #F5F5F5; border-radius: 12px; position: relative; }
+.entry-icon-wrap { width: 48px; height: 48px; border-radius: 12px; margin: 0 auto 6px; display: flex; align-items: center; justify-content: center; font-size: 22px; }
+.entry-label { font-size: 12px; color: #333; }
+.entry-badge { position: absolute; top: 4px; right: 4px; background: #F44336; color: #fff; font-size: 10px; padding: 2px 6px; border-radius: 8px; }
+
+/* 信息行 */
+.info-row { display: flex; justify-content: space-between; padding: 12px 0; border-bottom: 1px solid #F0F0F0; }
+.info-row:last-child { border-bottom: none; }
+.info-label { font-size: 14px; color: #666; }
+.info-value { font-size: 14px; color: #212121; font-weight: 500; }
+
+/* 适应症 */
+.indication-item { display: flex; align-items: center; padding: 12px; background: #E3F2FD; border-radius: 12px; margin-bottom: 8px; }
+.indication-icon { font-size: 28px; margin-right: 12px; }
+.indication-name { font-size: 14px; font-weight: 600; color: #0A2540; }
+.indication-desc { font-size: 12px; color: #666; margin-top: 2px; }
+
+/* 风险提示 */
+.risk-card { background: #FFEBEE; border: 1px solid #FFCDD2; }
+.risk-title { color: #C62828 !important; }
+.risk-item { padding: 8px 0; font-size: 13px; color: #C62828; border-bottom: 1px solid rgba(198, 40, 40, 0.1); }
+.risk-item:last-child { border-bottom: none; }
+
+/* 表单 */
+.form-item { margin-bottom: 16px; }
+.form-label { display: block; font-size: 14px; color: #333; margin-bottom: 6px; font-weight: 500; }
+.form-input { width: 100%; height: 44px; background: #F5F5F5; border: 1px solid transparent; border-radius: 10px; padding: 0 14px; font-size: 14px; outline: none; transition: border-color 0.2s; }
+.form-input:focus { border-color: #1565C0; background: #fff; }
+.radio-group { display: flex; flex-wrap: wrap; gap: 8px; }
+.radio-item { padding: 8px 16px; background: #F5F5F5; border-radius: 20px; font-size: 13px; color: #666; cursor: pointer; transition: all 0.2s; }
+.radio-item:hover { opacity: 0.8; }
+.radio-active { background: #1565C0; color: #fff; font-weight: 500; }
+
+/* 按钮 */
+.btn-group { display: flex; gap: 12px; margin-top: 20px; }
+.btn { flex: 1; height: 44px; border-radius: 10px; font-size: 15px; font-weight: 600; transition: all 0.2s; }
+.btn-primary { background: #1565C0; color: #fff; }
+.btn-primary:active { background: #0A2540; }
+.btn-primary:disabled { background: #BBDEFB; }
+.btn-secondary { background: #F5F5F5; color: #333; }
+
+/* 结果 */
+.result-card { background: linear-gradient(135deg, #0A2540 0%, #1565C0 100%); color: #fff; border-radius: 16px; padding: 20px; margin: 16px; }
+.result-row { display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.15); }
+.result-row:last-child { border-bottom: none; }
+.result-label { font-size: 14px; opacity: 0.9; }
+.result-value { font-size: 16px; font-weight: 600; }
+.result-value.highlight { color: #FFD54F; font-size: 18px; }
+
+/* 警告 */
+.warnings-card { background: #FFF3E0; border-left: 4px solid #FF9800; padding: 16px 20px; margin: 16px; border-radius: 8px; }
+.warnings-title { font-size: 14px; font-weight: 600; color: #E65100; margin-bottom: 8px; }
+.warning-item { font-size: 13px; color: #5D4037; margin: 4px 0; }
+
+/* 列表 */
+.section-title { display: flex; justify-content: space-between; align-items: center; padding: 20px 16px 8px; }
+.section-title-text { font-size: 16px; font-weight: 600; color: #0A2540; }
+.section-more { font-size: 13px; color: #666; }
+
+/* 聊天 */
+.chat-page { display: flex; flex-direction: column; min-height: 100vh; }
+.chat-messages { flex: 1; padding: 16px; overflow-y: auto; padding-bottom: 200px; }
+.msg { margin-bottom: 16px; max-width: 80%; }
+.msg-bot { margin-right: auto; }
+.msg-user { margin-left: auto; text-align: right; }
+.bubble { display: inline-block; padding: 12px 16px; border-radius: 16px; font-size: 14px; line-height: 1.5; white-space: pre-wrap; }
+.bubble-bot { background: #fff; color: #212121; border: 1px solid #E0E0E0; }
+.bubble-user { background: #1565C0; color: #fff; }
+.quick-questions { position: fixed; bottom: 76px; left: 0; right: 0; max-width: 480px; margin: 0 auto; display: flex; gap: 8px; padding: 8px 16px; background: #fff; border-top: 1px solid #eee; overflow-x: auto; white-space: nowrap; }
+.quick-chip { display: inline-block; background: #E3F2FD; color: #0A2540; font-size: 12px; padding: 6px 12px; border-radius: 14px; flex-shrink: 0; }
+.input-bar { position: fixed; bottom: 60px; left: 0; right: 0; max-width: 480px; margin: 0 auto; display: flex; align-items: center; gap: 8px; padding: 8px 12px; background: #fff; border-top: 1px solid #eee; }
+.input-bar input { flex: 1; height: 36px; background: #F5F5F5; border-radius: 18px; padding: 0 14px; font-size: 14px; border: none; outline: none; }
+.btn-send { background: #1565C0; color: #fff; font-size: 13px; padding: 8px 16px; border-radius: 18px; font-weight: 600; }
+.btn-send:disabled { background: #BBDEFB; }
+
+/* 页面切换 */
+.page { display: none; }
+.page.active { display: block; }
+
+/* 故事 */
+.story-card { background: #fff; margin: 0 16px 12px; padding: 16px; border-radius: 12px; display: flex; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
+.story-image { width: 80px; height: 80px; background: linear-gradient(135deg, #E3F2FD 0%, #BBDEFB 100%); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 36px; margin-right: 14px; flex-shrink: 0; }
+.story-content { flex: 1; min-width: 0; }
+.story-title { font-size: 15px; font-weight: 600; margin-bottom: 4px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.story-summary { font-size: 12px; color: #666; line-height: 1.4; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.story-tags { display: flex; gap: 4px; margin-top: 6px; }
+.story-tag { font-size: 10px; padding: 1px 6px; background: #E3F2FD; color: #1565C0; border-radius: 8px; }
+
+/* 设置 */
+.setting-item { display: flex; justify-content: space-between; align-items: center; padding: 14px 16px; background: #fff; border-bottom: 1px solid #F0F0F0; }
+.setting-icon { font-size: 18px; margin-right: 12px; }
+.setting-label { flex: 1; font-size: 15px; }
+.setting-arrow { color: #999; font-size: 18px; }
+.switch { position: relative; width: 44px; height: 24px; background: #E0E0E0; border-radius: 12px; transition: background 0.2s; }
+.switch.on { background: #1565C0; }
+.switch::after { content: ''; position: absolute; top: 2px; left: 2px; width: 20px; height: 20px; background: #fff; border-radius: 50%; transition: transform 0.2s; }
+.switch.on::after { transform: translateX(20px); }
+
+/* Toast */
+.toast { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background: rgba(0,0,0,0.8); color: #fff; padding: 12px 20px; border-radius: 8px; font-size: 14px; z-index: 1000; opacity: 0; pointer-events: none; transition: opacity 0.3s; max-width: 80%; text-align: center; }
+.toast.show { opacity: 1; }
+</style>
+</head>
+<body>
+
+<!-- ============ 页面 1: 首页 ============ -->
+<div id="page-home" class="page active">
+  <div class="app-header">
+    <h1>小福药</h1>
+    <p>中和制药官方 · 氟尿嘧啶口服乳</p>
+  </div>
+
+  <div class="hero">
+    <div class="hero-content">
+      <span class="hero-emoji">💊</span>
+      <div>
+        <div class="hero-name">氟尿嘧啶口服乳</div>
+        <div class="hero-en">Fluorouracil Oral Emulsion</div>
+        <div class="hero-tags">
+          <span class="tag">📋 处方药</span>
+          <span class="tag">💊 口服化疗</span>
+          <span class="tag">🏛️ 中和制药</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">⭐ 五大核心优势</div>
+    <div class="selling-grid">
+      <div class="selling-item"><span class="selling-icon">🏠</span><div class="selling-title">居家治疗</div><div class="selling-desc">告别频繁往返医院</div></div>
+      <div class="selling-item"><span class="selling-icon">💊</span><div class="selling-title">口服乳剂</div><div class="selling-desc">乳剂型制剂，服用方便</div></div>
+      <div class="selling-item"><span class="selling-icon">🛡️</span><div class="selling-title">安全可控</div><div class="selling-desc">医生全程用药指导</div></div>
+      <div class="selling-item"><span class="selling-icon">📋</span><div class="selling-title">品牌保障</div><div class="selling-desc">中和制药正规生产</div></div>
+      <div class="selling-item"><span class="selling-icon">💰</span><div class="selling-title">经济实惠</div><div class="selling-desc">省去住院治疗费用</div></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">🚀 快速进入</div>
+    <div class="entry-grid">
+      <div class="entry-item" onclick="nav('product')"><div class="entry-icon-wrap" style="background:#E3F2FD">📖</div><div class="entry-label">产品介绍</div></div>
+      <div class="entry-item" onclick="nav('academic')"><div class="entry-icon-wrap" style="background:#FFF3E0">📚</div><div class="entry-label">学术中心</div></div>
+      <div class="entry-item" onclick="nav('calculator')"><div class="entry-icon-wrap" style="background:#E8F5E9">🧮</div><div class="entry-label">剂量计算</div></div>
+      <div class="entry-item" onclick="nav('chat')"><div class="entry-icon-wrap" style="background:#F3E5F5">🤖</div><div class="entry-label">AI 客服</div></div>
+    </div>
+  </div>
+
+  <div class="section-title">
+    <span class="section-title-text">📖 真实患者故事</span>
+    <span class="section-more" onclick="nav('story')">查看更多 →</span>
+  </div>
+  <div class="story-card">
+    <div class="story-image">📖</div>
+    <div class="story-content">
+      <div class="story-title">重获新生的化疗日记</div>
+      <div class="story-summary">张女士，55 岁，结直肠癌术后，居家口服化疗 6 个月，目前病情稳定，重返工作岗位……</div>
+      <div class="story-tags"><span class="story-tag">结直肠癌</span><span class="story-tag">居家治疗</span></div>
+    </div>
+  </div>
+
+  <div class="card risk-card">
+    <div class="card-title risk-title">⚠️ 重要提示</div>
+    <div class="risk-item">• 本品为处方药，需在医生指导下使用</div>
+    <div class="risk-item">• 可能引起骨髓抑制、消化道反应</div>
+    <div class="risk-item">• 用药期间定期复查血常规、肝肾功能</div>
+  </div>
+</div>
+
+<!-- ============ 页面 2: 产品介绍 ============ -->
+<div id="page-product" class="page">
+  <div class="app-header">
+    <h1>产品介绍</h1>
+    <p>氟尿嘧啶口服乳 · 详细信息</p>
+  </div>
+
+  <div class="hero">
+    <div class="hero-content">
+      <span class="hero-emoji">💊</span>
+      <div>
+        <div class="hero-name">氟尿嘧啶口服乳</div>
+        <div class="hero-en">Fluorouracil Oral Emulsion</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">⭐ 五大核心优势</div>
+    <div class="selling-grid">
+      <div class="selling-item"><span class="selling-icon">🏠</span><div class="selling-title">居家治疗</div><div class="selling-desc">告别频繁往返医院</div></div>
+      <div class="selling-item"><span class="selling-icon">💊</span><div class="selling-title">口服乳剂</div><div class="selling-desc">乳剂型制剂，服用方便</div></div>
+      <div class="selling-item"><span class="selling-icon">🛡️</span><div class="selling-title">安全可控</div><div class="selling-desc">医生全程用药指导</div></div>
+      <div class="selling-item"><span class="selling-icon">📋</span><div class="selling-title">品牌保障</div><div class="selling-desc">中和制药正规生产</div></div>
+      <div class="selling-item"><span class="selling-icon">💰</span><div class="selling-title">经济实惠</div><div class="selling-desc">省去住院治疗费用</div></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">📋 药品基本信息</div>
+    <div class="info-row"><span class="info-label">通用名</span><span class="info-value">氟尿嘧啶口服乳</span></div>
+    <div class="info-row"><span class="info-label">英文名</span><span class="info-value">Fluorouracil Oral Emulsion</span></div>
+    <div class="info-row"><span class="info-label">规格</span><span class="info-value">0.4g/10mL/支</span></div>
+    <div class="info-row"><span class="info-label">剂型</span><span class="info-value">口服乳剂</span></div>
+    <div class="info-row"><span class="info-label">生产厂家</span><span class="info-value">湖南中和制药有限公司</span></div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">🎯 适应症</div>
+    <div class="card-subtitle" style="font-size:12px;color:#666;margin-bottom:12px">本品适用于以下肿瘤的治疗。详细适应症以药品说明书为准。</div>
+    <div class="indication-item">
+      <span class="indication-icon">🎗️</span>
+      <div><div class="indication-name">结直肠癌</div><div class="indication-desc">晚期结直肠癌的姑息化疗</div></div>
+    </div>
+    <div class="indication-item">
+      <span class="indication-icon">🫃</span>
+      <div><div class="indication-name">胃癌</div><div class="indication-desc">晚期胃癌的联合化疗</div></div>
+    </div>
+    <div class="indication-item">
+      <span class="indication-icon">🎀</span>
+      <div><div class="indication-name">乳腺癌</div><div class="indication-desc">转移性乳腺癌的化疗</div></div>
+    </div>
+    <div class="indication-item">
+      <span class="indication-icon">👄</span>
+      <div><div class="indication-name">头颈肿瘤</div><div class="indication-desc">头颈部鳞癌的化疗</div></div>
+    </div>
+  </div>
+
+  <div class="card risk-card">
+    <div class="card-title risk-title">⚠️ 重大风险提示</div>
+    <div class="risk-item">• 骨髓抑制：定期监测血常规</div>
+    <div class="risk-item">• 严重胃肠道反应：恶心、呕吐、腹泻</div>
+    <div class="risk-item">• 口腔黏膜炎：保持口腔卫生</div>
+    <div class="risk-item">• 手足综合征：避免日晒</div>
+    <div class="risk-item">• 孕妇禁用，可能致畸</div>
+  </div>
+
+  <div class="card">
+    <div class="btn-group">
+      <button class="btn btn-primary" onclick="toast('说明书功能开发中')">📖 查看完整说明书</button>
+      <button class="btn btn-secondary" onclick="nav('chat')">👨‍⚕️ 咨询医师</button>
+    </div>
+  </div>
+</div>
+
+<!-- ============ 页面 3: 学术中心 ============ -->
+<div id="page-academic" class="page">
+  <div class="app-header">
+    <h1>学术中心</h1>
+    <p>专业培训 · 文献资料</p>
+  </div>
+
+  <div class="card">
+    <div class="card-title">🎓 培训课件</div>
+    <div class="entry-grid">
+      <div class="entry-item" onclick="toast('课件详情（开发中）')"><div class="entry-icon-wrap" style="background:#E3F2FD">📖</div><div class="entry-label">基础课程</div></div>
+      <div class="entry-item" onclick="toast('课件详情（开发中）')"><div class="entry-icon-wrap" style="background:#FFF3E0">🎬</div><div class="entry-label">视频教学</div></div>
+      <div class="entry-item" onclick="toast('课件详情（开发中）')"><div class="entry-icon-wrap" style="background:#E8F5E9">📝</div><div class="entry-label">考试题库</div></div>
+      <div class="entry-item" onclick="nav('calculator')"><div class="entry-icon-wrap" style="background:#F3E5F5">🧮</div><div class="entry-label">剂量计算</div></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">📚 学术文献</div>
+    <div class="story-card" style="margin:0 0 12px">
+      <div class="story-image">📄</div>
+      <div class="story-content">
+        <div class="story-title">氟尿嘧啶口服乳结直肠癌III期临床研究</div>
+        <div class="story-summary">多中心、随机对照研究，纳入 328 例晚期结直肠癌患者，对比口服乳剂与静脉给药的疗效和安全性……</div>
+        <div class="story-tags"><span class="story-tag">结直肠癌</span><span class="story-tag">III期临床</span></div>
+      </div>
+    </div>
+    <div class="story-card" style="margin:0">
+      <div class="story-image">📄</div>
+      <div class="story-content">
+        <div class="story-title">居家口服化疗依从性研究</div>
+        <div class="story-summary">对 200 例居家化疗患者进行 6 个月随访，调查用药依从性、生活质量及不良反应发生率……</div>
+        <div class="story-tags"><span class="story-tag">居家治疗</span><span class="story-tag">依从性</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ 页面 4: 剂量计算器 ============ -->
+<div id="page-calculator" class="page">
+  <div class="app-header">
+    <h1>剂量计算器</h1>
+    <p>基于 BSA · Mosteller 公式</p>
+  </div>
+
+  <div class="card">
+    <div class="card-title">📋 患者信息</div>
+    <div class="form-item">
+      <label class="form-label">身高 (cm)</label>
+      <input id="height" type="number" placeholder="例如 165" class="form-input">
+    </div>
+    <div class="form-item">
+      <label class="form-label">体重 (kg)</label>
+      <input id="weight" type="number" placeholder="例如 60" class="form-input">
+    </div>
+    <div class="form-item">
+      <label class="form-label">年龄</label>
+      <input id="age" type="number" placeholder="例如 55" class="form-input">
+    </div>
+    <div class="form-item">
+      <label class="form-label">适应症</label>
+      <div class="radio-group" id="ind-group">
+        <div class="radio-item radio-active" data-val="结直肠癌">结直肠癌</div>
+        <div class="radio-item" data-val="胃癌">胃癌</div>
+        <div class="radio-item" data-val="乳腺癌">乳腺癌</div>
+        <div class="radio-item" data-val="头颈肿瘤">头颈肿瘤</div>
+      </div>
+    </div>
+    <div class="form-item">
+      <label class="form-label">ECOG 体能状态评分</label>
+      <div class="radio-group" id="ps-group">
+        <div class="radio-item radio-active" data-val="0">0</div>
+        <div class="radio-item" data-val="1">1</div>
+        <div class="radio-item" data-val="2">2</div>
+        <div class="radio-item" data-val="3">3</div>
+        <div class="radio-item" data-val="4">4</div>
+      </div>
+      <div style="font-size:11px;color:#999;margin-top:4px">0=活动自如 1=轻度受限 2=卧床&lt;50% 3=卧床≥50% 4=完全卧床</div>
+    </div>
+    <div class="btn-group">
+      <button class="btn btn-secondary" onclick="resetCalc()">重置</button>
+      <button class="btn btn-primary" onclick="calcDose()">立即计算</button>
+    </div>
+  </div>
+
+  <div id="warnings" class="warnings-card" style="display:none">
+    <div class="warnings-title">⚠️ 注意事项</div>
+    <div id="warning-list"></div>
+  </div>
+
+  <div id="result" class="result-card" style="display:none">
+    <div class="card-title" style="color:#fff">📊 计算结果</div>
+    <div class="result-row"><span class="result-label">体表面积 BSA</span><span class="result-value" id="r-bsa"></span></div>
+    <div class="result-row"><span class="result-label">调整后基础剂量</span><span class="result-value" id="r-dose"></span></div>
+    <div class="result-row"><span class="result-label">推荐日剂量</span><span class="result-value highlight" id="r-mg"></span></div>
+    <div class="result-row"><span class="result-label">折合体积</span><span class="result-value highlight" id="r-ml"></span></div>
+    <div class="result-row"><span class="result-label">14 天疗程总量</span><span class="result-value" id="r-d14"></span></div>
+    <div class="result-row"><span class="result-label">28 天疗程总量</span><span class="result-value" id="r-d28"></span></div>
+  </div>
+
+  <div class="card risk-card">
+    <div class="card-title risk-title">⚠️ 重要提示</div>
+    <div class="risk-item">• 本计算结果仅供参考</div>
+    <div class="risk-item">• 实际用药方案须由主治医师制定</div>
+    <div class="risk-item">• 请遵医嘱用药</div>
+  </div>
+</div>
+
+<!-- ============ 页面 5: AI 客服 ============ -->
+<div id="page-chat" class="page chat-page">
+  <div class="app-header">
+    <h1>智能客服</h1>
+    <p>AI 药师在线 · 7×24 小时</p>
+  </div>
+
+  <div class="chat-messages" id="chat-messages">
+    <div class="msg msg-bot"><div class="bubble bubble-bot">您好！我是您的专属 AI 药师助手 🤖
+
+我可以帮您解答关于氟尿嘧啶口服乳的用药问题。请随时向我提问！</div></div>
+    <div class="msg msg-bot"><div class="bubble bubble-bot">⚠️ 重要提示：我是 AI 助手，不能替代专业医师诊断。如有紧急情况，请立即拨打热线或就医。</div></div>
+  </div>
+
+  <div class="quick-questions">
+    <div class="quick-chip" onclick="sendQuick('怎么服药？')">怎么服药？</div>
+    <div class="quick-chip" onclick="sendQuick('漏服怎么办？')">漏服怎么办？</div>
+    <div class="quick-chip" onclick="sendQuick('常见副作用')">常见副作用</div>
+    <div class="quick-chip" onclick="sendQuick('何时复查？')">何时复查？</div>
+    <div class="quick-chip" onclick="sendQuick('饮食注意')">饮食注意</div>
+  </div>
+
+  <div class="input-bar">
+    <input id="chat-input" type="text" placeholder="请输入您的问题..." onkeydown="if(event.key==='Enter')sendMsg()">
+    <button class="btn-send" id="btn-send" onclick="sendMsg()">发送</button>
+  </div>
+</div>
+
+<!-- ============ 页面 6: 患者故事 ============ -->
+<div id="page-story" class="page">
+  <div class="app-header">
+    <h1>患者故事</h1>
+    <p>真实案例 · 用药心得</p>
+  </div>
+
+  <div class="story-card">
+    <div class="story-image">📖</div>
+    <div class="story-content">
+      <div class="story-title">重获新生的化疗日记</div>
+      <div class="story-summary">张女士，55 岁，结直肠癌术后，居家口服化疗 6 个月……</div>
+      <div class="story-tags"><span class="story-tag">结直肠癌</span><span class="story-tag">居家治疗</span></div>
+    </div>
+  </div>
+  <div class="story-card">
+    <div class="story-image">📖</div>
+    <div class="story-content">
+      <div class="story-title">与癌共舞的日子</div>
+      <div class="story-summary">李先生，62 岁，胃癌晚期，通过口服化疗获得 2 年生存期……</div>
+      <div class="story-tags"><span class="story-tag">胃癌</span><span class="story-tag">带瘤生存</span></div>
+    </div>
+  </div>
+  <div class="story-card">
+    <div class="story-image">📖</div>
+    <div class="story-content">
+      <div class="story-title">重返工作岗位的王女士</div>
+      <div class="story-summary">王女士，48 岁，乳腺癌术后，坚持治疗 1 年后重返岗位……</div>
+      <div class="story-tags"><span class="story-tag">乳腺癌</span><span class="story-tag">重返岗位</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ 页面 7: 我的 ============ -->
+<div id="page-my" class="page">
+  <div class="app-header">
+    <h1>我的</h1>
+    <p>个人中心</p>
+  </div>
+
+  <div class="card">
+    <div style="display:flex;align-items:center">
+      <div style="font-size:48px;margin-right:16px">👤</div>
+      <div style="flex:1">
+        <div style="font-size:18px;font-weight:600">张女士</div>
+        <div style="font-size:13px;color:#666;margin-top:2px">已用药 32 天 · 治疗中</div>
+      </div>
+      <div style="color:#999">编辑 ›</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div style="display:flex;justify-content:space-around;text-align:center">
+      <div><div style="font-size:24px;font-weight:700;color:#0A2540">12</div><div style="font-size:12px;color:#666">连续打卡</div></div>
+      <div><div style="font-size:24px;font-weight:700;color:#0A2540">3</div><div style="font-size:12px;color:#666">复查提醒</div></div>
+      <div><div style="font-size:24px;font-weight:700;color:#0A2540">5</div><div style="font-size:12px;color:#666">学习记录</div></div>
+      <div><div style="font-size:24px;font-weight:700;color:#0A2540">1</div><div style="font-size:12px;color:#666">家属账号</div></div>
+    </div>
+  </div>
+
+  <div class="card" style="padding:0">
+    <div class="setting-item" onclick="toast('电子药历 · 开发中')">
+      <span class="setting-icon">📋</span>
+      <span class="setting-label">电子药历</span>
+      <span class="setting-arrow">›</span>
+    </div>
+    <div class="setting-item" onclick="toast('我的订单 · 开发中')">
+      <span class="setting-icon">📦</span>
+      <span class="setting-label">我的订单</span>
+      <span class="setting-arrow">›</span>
+    </div>
+    <div class="setting-item" onclick="nav('chat')">
+      <span class="setting-icon">📞</span>
+      <span class="setting-label">专属顾问</span>
+      <span class="setting-arrow">›</span>
+    </div>
+    <div class="setting-item" onclick="toast('设置 · 开发中')">
+      <span class="setting-icon">⚙️</span>
+      <span class="setting-label">设置</span>
+      <span class="setting-arrow">›</span>
+    </div>
+  </div>
+</div>
+
+<!-- ============ 浮动紧急按钮 ============ -->
+<button class="emergency-btn" onclick="confirmCall()" title="紧急求助">🆘</button>
+
+<!-- ============ 底部 Tab ============ -->
+<div class="tabbar">
+  <div class="tab-item active" data-page="home" onclick="nav('home')">
+    <div class="icon">🏠</div><div>首页</div>
+  </div>
+  <div class="tab-item" data-page="product" onclick="nav('product')">
+    <div class="icon">💊</div><div>产品</div>
+  </div>
+  <div class="tab-item" data-page="academic" onclick="nav('academic')">
+    <div class="icon">📚</div><div>学术</div>
+  </div>
+  <div class="tab-item" data-page="chat" onclick="nav('chat')">
+    <div class="icon">🤖</div><div>客服</div>
+  </div>
+  <div class="tab-item" data-page="my" onclick="nav('my')">
+    <div class="icon">👤</div><div>我的</div>
+  </div>
+</div>
+
+<!-- Toast -->
+<div class="toast" id="toast"></div>
+
+<script>
+// ========== 路由 ==========
+function nav(page) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  const target = document.getElementById('page-' + page);
+  if (target) target.classList.add('active');
+  // 更新 tab 高亮
+  document.querySelectorAll('.tab-item').forEach(t => t.classList.remove('active'));
+  const tab = document.querySelector(`.tab-item[data-page="${page}"]`);
+  if (tab) tab.classList.add('active');
+  // 滚动到顶
+  window.scrollTo(0, 0);
+}
+
+// ========== Toast ==========
+let toastTimer = null;
+function toast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => t.classList.remove('show'), 2000);
+}
+
+// ========== 紧急求助 ==========
+function confirmCall() {
+  if (confirm('即将拨打紧急热线 400-888-XXXX\n（演示占位号码）\n\n是否继续？')) {
+    toast('演示版不可拨打，请联系医师');
+  }
+}
+
+// ========== 剂量计算器 ==========
+let selectedInd = '结直肠癌';
+let selectedPS = '0';
+
+document.getElementById('ind-group').addEventListener('click', e => {
+  const item = e.target.closest('.radio-item');
+  if (!item) return;
+  document.querySelectorAll('#ind-group .radio-item').forEach(i => i.classList.remove('radio-active'));
+  item.classList.add('radio-active');
+  selectedInd = item.dataset.val;
+});
+
+document.getElementById('ps-group').addEventListener('click', e => {
+  const item = e.target.closest('.radio-item');
+  if (!item) return;
+  document.querySelectorAll('#ps-group .radio-item').forEach(i => i.classList.remove('radio-active'));
+  item.classList.add('radio-active');
+  selectedPS = item.dataset.val;
+});
+
+function resetCalc() {
+  document.getElementById('height').value = '';
+  document.getElementById('weight').value = '';
+  document.getElementById('age').value = '';
+  document.getElementById('result').style.display = 'none';
+  document.getElementById('warnings').style.display = 'none';
+}
+
+function calcDose() {
+  const h = parseFloat(document.getElementById('height').value);
+  const w = parseFloat(document.getElementById('weight').value);
+  const age = parseInt(document.getElementById('age').value);
+  if (!h || !w || !age) { toast('请填写身高、体重、年龄'); return; }
+
+  // 警告
+  const warnings = [];
+  if (age >= 75) warnings.push('老年人需谨慎，建议从 80% 剂量开始');
+  if (parseInt(selectedPS) >= 2) warnings.push('ECOG ≥ 2 分，建议减量至 75%');
+  if (warnings.length > 0) {
+    document.getElementById('warnings').style.display = 'block';
+    document.getElementById('warning-list').innerHTML = warnings.map(w => '<div class="warning-item">• ' + w + '</div>').join('');
+  } else {
+    document.getElementById('warnings').style.display = 'none';
+  }
+
+  // 计算
+  const bsa = Math.sqrt((h * w) / 3600);
+  const doseMap = { '结直肠癌': 600, '胃癌': 600, '乳腺癌': 500, '头颈肿瘤': 500 };
+  let dose = doseMap[selectedInd] || 600;
+  if (parseInt(selectedPS) >= 2) dose *= 0.75;
+  if (age >= 75) dose *= 0.8;
+  const totalMg = bsa * dose;
+  const totalMl = totalMg / 40;
+
+  // 渲染
+  document.getElementById('r-bsa').textContent = bsa.toFixed(2) + ' m²';
+  document.getElementById('r-dose').textContent = dose + ' mg/m²/日';
+  document.getElementById('r-mg').textContent = Math.round(totalMg) + ' mg/日';
+  document.getElementById('r-ml').textContent = totalMl.toFixed(1) + ' mL/日';
+  document.getElementById('r-d14').textContent = (totalMg * 14).toFixed(0) + ' mg';
+  document.getElementById('r-d28').textContent = (totalMg * 28).toFixed(0) + ' mg';
+  document.getElementById('result').style.display = 'block';
+
+  toast('计算完成 ✓');
+}
+
+// ========== AI 客服 ==========
+const knowledge = {
+  '怎么服药': '📋 氟尿嘧啶口服乳用法用量：\n\n• 一般每日 300-600mg/m²，分 2-3 次口服\n• 推荐餐后 30 分钟服用，减少胃肠刺激\n• 整支服用，请勿拆分或咀嚼\n• 严格遵医嘱，切勿自行调整剂量\n\n⚠️ 具体方案以您的医师处方为准。',
+  '漏服怎么办': '⏰ 漏服处理原则：\n\n• 想起时立即补服\n• 若已接近下次服药时间，跳过本次，按下次时间服药\n• 切勿一次服用双倍剂量\n• 连续漏服请咨询医师\n\n💡 建议开启用药提醒功能，避免漏服。',
+  '常见副作用': '🩺 常见副作用（CTCAE 分级）：\n\n1️⃣ 胃肠道：恶心、呕吐、腹泻、口腔黏膜炎\n2️⃣ 血液：白细胞减少、血小板减少、贫血\n3️⃣ 皮肤：手足综合征、皮疹、色素沉着\n4️⃣ 其他：疲劳、脱发、食欲下降\n\n⚠️ 出现严重副作用请立即上报！',
+  '何时复查': '📅 化疗期间复查建议：\n\n• 血常规：每 2-4 周一次\n• 肝肾功能：每月一次\n• 影像学（CT/MRI）：每 2-3 个月\n• 肿瘤标志物：根据方案调整\n\n💡 您可在「复查提醒」中查看个性化安排。',
+  '饮食注意': '🥗 化疗期间饮食建议：\n\n✅ 多吃：高蛋白、新鲜蔬果、易消化食物\n❌ 避免：辛辣、油腻、生冷、酒精\n💧 每日饮水 2000ml 以上\n🧂 适量补铁、补钙\n\n⚠️ 食欲下降时可少量多餐'
+};
+
+function sendMsg() {
+  const input = document.getElementById('chat-input');
+  const text = input.value.trim();
+  if (!text) return;
+  addMsg(text, 'user');
+  input.value = '';
+  // 模拟 AI 思考
+  setTimeout(() => {
+    const reply = getReply(text);
+    addMsg(reply, 'bot');
+  }, 600);
+}
+
+function sendQuick(q) {
+  document.getElementById('chat-input').value = q;
+  sendMsg();
+}
+
+function addMsg(text, role) {
+  const div = document.createElement('div');
+  div.className = 'msg msg-' + role;
+  const bubble = document.createElement('div');
+  bubble.className = 'bubble bubble-' + role;
+  bubble.textContent = text;
+  div.appendChild(bubble);
+  const messages = document.getElementById('chat-messages');
+  messages.appendChild(div);
+  messages.scrollTop = messages.scrollHeight;
+}
+
+function getReply(msg) {
+  for (const [key, val] of Object.entries(knowledge)) {
+    if (msg.includes(key)) return val;
+  }
+  return '关于您咨询的问题，建议：\n1. 仔细阅读药品说明书\n2. 联系您的主治医师\n3. 必要时拨打紧急热线 400-888-XXXX\n\n⚠️ 我是 AI 助手，不能替代专业医师诊断。';
+}
+
+// 默认显示首页
+nav('home');
+</script>
+</body>
+</html>
